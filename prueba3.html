@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prueba3</title>
+    <script>
+      alert("Hola, mundo!, dentro de la etiqueta head");
+    </script>
+  </head>
+
+  <body>
+    <script>
+      document.write("Hola desde el document.write antes del parrafo"); //Inserta texto en el documento
+    </script>
+    <p
+      onclick="alert('Hola desde el alert,lanzado al hacer click en el parrafo')">
+      Haz click en este parrafo
+    </p>
+    //Cuando se hace click en el parrafo lanza un alert
+    <script>
+      document.write("Hola desde el document.write despues del parrafo"); //Escribe en el documento
+    </script>
+    <a
+      href="#"
+      onclick="alert('Hola desde el alert, lanzando al hacer click en el enlace ')"
+      >Haz click en este enlace //Cuando se hace click en el enlace lanza un
+      alert
+    </a>
+    <script>
+      alert("Hola, mundo!, dentro de la etiqueta body");
+    </script>
+  </body>
+  <script>
+    alert("Hola, mundo!, fuera de las etiqueta body");
+  </script>
+  <script src="prueba.js"></script>
+  <script>
+    console.log("Hola desde la consola del navegador"); //Mensaje en la consola del navegador
+  </script>
+  <noscript>
+    <p>
+      Navegadores no soportan JavaScript o está desactivado. No podemos mostrar
+      los mensajes emergentes.
+    </p>
+  </noscript>
+</html>
