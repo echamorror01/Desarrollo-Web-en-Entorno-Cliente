@@ -1,19 +1,23 @@
 function crearTabla() {
-  //tr fila y td el contenido de detro
+  // la funcion se ejecuta cuando la llamo aqui
+
   let letraascii = 65;
-  let rdo = "<table><tr><td>&nbsp;&nbsp;</td>";
+  let rdo = "<table><tr><td>&nbsp;&nbsp;</td>"; // se crea la primera celda vacia
   for (let col = 1; col < 8; col++) {
     //esto es para las columnas
-    rdo += "<td>" + String.fromCharCode(letraascii++) + "</td>";
+
+    rdo += "<td>" + String.fromCharCode(letraascii++) + "</td>"; //se asigna a cada celda
   }
-  rdo += "</tr>";
-  for (let filas = 1; filas < 8; filas++) {
-    rdo += "<tr>";
+  rdo += "</tr>"; // se cierra la fila que contiene las letras
+  for (let filas = 1; filas <= 8; filas++) {
+    //8  filas
+    rdo += "<tr>"; // se abre una fila por cada numero
     for (let col = 1; col <= 8; col++) {
+      //recorre 8 columnas dentro de cada fila
       if (col == 1) {
-        rdo += "<td>" + filas + "</td>";
+        rdo += "<td>" + filas + "</td>"; // se agrega el numero
       } else {
-        rdo += "<td>" + "</td>";
+        rdo += "<td>" + "</td>"; // celdas vacias
       }
       //esto es para las columnas
     }
