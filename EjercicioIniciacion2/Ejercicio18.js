@@ -1,4 +1,5 @@
 function crearTabla() {
+  //tr para cada fila y td para cada celda
   // la funcion se ejecuta cuando la llamo aqui
 
   let letraascii = 65;
