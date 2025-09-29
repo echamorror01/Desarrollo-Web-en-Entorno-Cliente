@@ -3,7 +3,7 @@ function crearTabla() {
   // la funcion se ejecuta cuando la llamo aqui
 
   let letraascii = 65;
-  let rdo = "<table><tr><td>&nbsp;&nbsp;</td>"; // se crea la primera celda vacia
+  let rdo = "<table><tr>&nbsp;&nbsp<td></td>"; // se crea la primera celda vacia, ponemos nbsp para que lo haga mas grande
   for (let col = 1; col < 8; col++) {
     //esto es para las columnas
 
@@ -27,5 +27,5 @@ function crearTabla() {
   }
 
   rdo += "</table>";
-  document.getElementById("tabla").innerHTML = rdo; //para meter dentro del div
+  document.getElementById("tabla").innerHTML = rdo; //para meter dentro del div , obten el elemento del id tabla
 }
