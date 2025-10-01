@@ -5,7 +5,7 @@ Calcula la media de todos los elementos del array.
 */
 let suma = 0;
 let miarray = [];
-for (let i = 0; i <= 100; i++) {
+for (let i = 0; i < 100; i++) {
   miarray.push(i);
   suma += i;
 }
