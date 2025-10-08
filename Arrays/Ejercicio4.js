@@ -13,6 +13,12 @@ do {
 } while (contador != 10);
 
 let media = suma / contador;
-console.log("LA media de los numeros " + "es" + media);
+console.log("La media de los numeros " + "es" + media);
 
-for (i = 0; i < miarray.length; I++) {}
+for (i = 0; i < miarray.length; i++) {
+  if (miarray[i] > media) {
+    console.log("El numero " + miarray[i] + "supera la media");
+  } else {
+    console.log("El numero " + miarray[i] + " no supera la media");
+  }
+}
