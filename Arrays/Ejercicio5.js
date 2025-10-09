@@ -14,6 +14,5 @@ do {
 console.log("Estos son todos los nombres introducidos " + miarray);
 
 //para ordenar alfabeticamente tenemos la funcion sort
-
 miarray.sort();
 console.log("Los nombres ordenados alfabeticamente " + miarray);
