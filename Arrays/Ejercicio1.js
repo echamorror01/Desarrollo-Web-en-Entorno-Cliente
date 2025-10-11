@@ -3,7 +3,7 @@
 un array para almacenarlos y "for" para mostrarlos).*/
 
 let num;
-let miarray = new Array();
+let miarray = [];
 let contador = 0;
 
 do {

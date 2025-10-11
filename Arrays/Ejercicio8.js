@@ -9,7 +9,7 @@ for (const valor of miarray) {
   // contenido de dentro
   if (repeticiones[valor] == undefined) {
     repeticiones[valor] = 1;
-    numeroelementos++;
+    numeroelementos++; // cuenta los elementos del array es decir el verde , rosa
   } else {
     repeticiones[valor] += 1;
   }
