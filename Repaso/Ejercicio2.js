@@ -18,7 +18,9 @@ if (num1 < num2) {
 let resultado = "";
 for (let i = min; i <= max; i++) {
   if (i % 2 !== 0) {
-    resultado += "- " + i + " ";
+    if (resultado == " ") resultado += i;
+  } else {
+    resultado += "-" + i;
   }
 }
 alert(resultado);
