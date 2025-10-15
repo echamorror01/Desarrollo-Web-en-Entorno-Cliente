@@ -17,4 +17,5 @@ function creartabla() {
     resultado += "</tr>";
   }
   resultado += "</table>";
+  document.getElementById("tabla").innerHTML = resultado;
 }
