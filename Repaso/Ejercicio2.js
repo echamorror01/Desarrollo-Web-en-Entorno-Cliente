@@ -21,6 +21,10 @@ for (let i = min; i <= max; i++) {
     if (i == "") {
     }
     resultado += "- " + i + " ";
+
+    if (resultado == " ") resultado += i;
+  } else {
+    resultado += "-" + i;
   }
 }
 alert(resultado);
