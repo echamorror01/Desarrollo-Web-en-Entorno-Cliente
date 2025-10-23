@@ -14,3 +14,6 @@ function prueba() {
   }
   console.log(rdo);
 }
+function prueba2() {}
+
+function prueba3() {}
