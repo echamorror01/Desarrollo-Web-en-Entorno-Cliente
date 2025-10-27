@@ -15,6 +15,7 @@ function Añadir() {
   let producto1 = "Carne";
   let producto2 = "Azucar";
   if (compra.includes(producto1) || compra.includes(producto2)) {
+    //con que se cumpla 1 ya va para alante
     alert("Ya se han añadido estos productos a la lista de la compra ");
     return;
   }
@@ -43,4 +44,20 @@ function arrayEnMinusculas(lista) {
     cestaMinusculas.push(producto.toLowerCase());
   }
   return cestaMinusculas;
+}
+
+function Modificar() {
+  let cestaminusculas = arrayEnMinusculas(compra);
+  let producto = prompt(
+    "Dime que producto quieres modificar"
+  ).toLocaleLowerCase();
+  let indice = cestaminusculas.indexOf(producto);
+  if (indice == -1) {
+    alert("El producto no existe");
+    return;
+  }
+  let nuevoproducto = prompt("Introduce el nuevo producto");
+  compra[indice] = nuevoproducto;
+
+  alert(compra);
 }
