@@ -15,6 +15,7 @@ function Añadir() {
   let producto1 = "Carne";
   let producto2 = "Azucar";
   if (compra.includes(producto1) || compra.includes(producto2)) {
+    //nada mas que se cumpla una entra
     //con que se cumpla 1 ya va para alante
     alert("Ya se han añadido estos productos a la lista de la compra ");
     return;
