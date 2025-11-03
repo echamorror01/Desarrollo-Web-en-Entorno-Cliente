@@ -13,5 +13,5 @@ let dia = fecha.getDate();
 let mes = fecha.getMonth() + 1; //porque enero es 0
 let año = fecha.getFullYear();
 let diaSemana = fecha.getDay();
-alert(dia + "/" + mes + "/" + año + "y hoy es " + dia[diaSemana]);
+alert(dia + "/" + mes + "/" + año + "y hoy es " + dias[diaSemana]);
 //preguntar a miguel angel
