@@ -74,3 +74,107 @@ function DibujarRectangulo(alto, ancho) {
   }
   console.log(lin);
 }
+
+/*7.- Crea una función "Cubo" que devuelva el cubo de un número real que se indique como parámetro. La 
+función tendrá que comprobar que el parámetro es un número (o que se pueda convertir a un número), en 
+caso contrario, devolverá false.  
+Prueba esta función para calcular el cubo de 3.2 y el de 5, y también prueba a pasarle “hola” como 
+parámetro. ¿Qué ocurre? */
+
+function Cubo(numero) {
+  numero = prompt("Introduce un numero");
+  if (numero == Number(numero) || numero == parseInt(numero)) {
+    let cubo = Math.pow(numero, 3);
+    console.log(cubo);
+  } else {
+    console.log("false");
+  }
+
+  /* Otra forma:
+  function Cubo(numero) {
+  // Intentamos convertir el parámetro a número real
+  numero = Number(numero);
+
+  // Si no es un número válido (Number devuelve NaN) → retornar false
+  if (isNaN(numero)) {
+    return false;
+  }
+
+  // Si sí es número → devolver su cubo
+  return numero ** 3; // o Math.pow(numero, 3)
+}
+  console.log(Cubo(3.2)); // 32.768
+console.log(Cubo(5));   // 125
+console.log(Cubo("hola")); // false   aqui lo que hacemos es llamar despues a la funcion */
+}
+/*8.- Crea una función "Menor" que devuelva el menor de dos números que recibirá como parámetros.*/
+function Menor(numero1, numero2) {
+  return Math.min(numero1, numero2);
+}
+console.log(Menor(2, 8));
+console.log(Menor(8, 12));
+
+/*9.- Crear 4 funciones: PideNumero, EsPositivo, CalculaMitad y HazTodo 
+La función PideNumero, pedirá al usuario que introduzca un número y devuelve el número introducido. 
+Las funciones EsPositivo y CalculaMitad, no imprimen nada en la consola, simplemente devuelven los 
+valores correspondientes. 
+La función HazTodo no tendrá ningún parámetro, llamará a las otras tres funciones y mostrará la 
+siguiente información en la consola: 
+‘El número X es POSITIVO/NEGATIVO’ 
+‘La mitad de X es Y’ 
+Fuera de las funciones, solo habrá una llamada a la función HazTodo.*/
+
+function Pidenumero() {
+  let numero = parseInt(prompt("Introduce un numero"));
+  return numero;
+}
+function Espositivo(numero) {
+  if (isNaN(numero)) {
+    return "Numero no valido ";
+  }
+  if (numero > 0) {
+    return " es positivo";
+  } else if (numero < 0) {
+    return "es negativo";
+  } else {
+    return "es cero ";
+  }
+}
+function CalculaMitad(numero) {
+  if (isNaN(numero)) {
+    return "Numero no valido ";
+  }
+  return numero / 2;
+}
+
+function HazTodo() {
+  let num = Pidenumero();
+  console.log("El numero " + num + "es" + Espositivo(num));
+  console.log("La mitad de " + num + "es " + CalculaMitad(num));
+}
+/*11.- Escribe una función que dado un string, devuelva un array con las palabras que forman el string. 
+¿Qué pasa si el string tiene 3 espacios en blanco seguidos? ¿Se puede solucionar? */
+
+function Cadena() {
+  let string = "Hola que     estas yo bien ";
+  let palabras = string.split(" ");
+  for (const indice in palabras) {
+    console.log(palabras[indice]);
+  }
+}
+
+/*12.- Escribe una función que se le pase un nombre completo (string) y devuelve el nombre abreviado (es 
+decir, el nombre y la primera letra del primer apellido, seguido de un punto). Escribe también el código 
+necesario para probarla. */
+
+function Nombre(nombrecompleto) {
+  let partes = nombrecompleto.split(" ");
+  let nombre = partes[0];
+  if (partes.length > 1) {
+    let primerapellido = partes[1];
+    console.log(nombre + primerapellido.charAt(0) + ".");
+  } else {
+    return nombre;
+  }
+}
+console.log(Nombre("Estrella Chamorro "));
