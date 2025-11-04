@@ -111,8 +111,10 @@ console.log(Cubo("hola")); // false   aqui lo que hacemos es llamar despues a la
 function Menor(numero1, numero2) {
   return Math.min(numero1, numero2);
 }
-console.log(Menor(2, 8));
-console.log(Menor(8, 12));
+function MenorP() {
+  console.log(Menor(2, 8));
+  console.log(Menor(8, 12));
+}
 
 /*9.- Crear 4 funciones: PideNumero, EsPositivo, CalculaMitad y HazTodo 
 La función PideNumero, pedirá al usuario que introduzca un número y devuelve el número introducido. 
@@ -177,4 +179,23 @@ function Nombre(nombrecompleto) {
     return nombre;
   }
 }
-console.log(Nombre("Estrella Chamorro "));
+function NombreP() {
+  console.log(Nombre("Estrella Chamorro "));
+}
+
+/* 13.- Crea una función que oculte parte de una dirección de email. Por ejemplo, si se le pasa
+“1234567890@gmail.com”, devolverá “12345…@gmail.com”, es decir, sustituye la 2ª mitad del email
+(antes de la @) por “...”. Escribe también el código necesario para probarla. */
+
+function Cortar(email) {
+  let [nombre, dominio] = email.split("@");
+  let tamaño = nombre.length / 2; //mitad del nombre antes de la @
+  let nuevonombre = nombre(0, length) + "...";
+
+  return nuevonombre + "@" + dominio;
+}
+
+function CortarP() {
+  let email = prompt("Introduce un email");
+  console.log(Cortar(email));
+}
