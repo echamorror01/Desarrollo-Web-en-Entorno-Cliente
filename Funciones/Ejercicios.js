@@ -188,14 +188,13 @@ function NombreP() {
 (antes de la @) por “...”. Escribe también el código necesario para probarla. */
 
 function Cortar(email) {
-  let [nombre, dominio] = email.split("@");
+  let [nombre, dominio] = email.split("@"); //cortamos por la @
   let tamaño = nombre.length / 2; //mitad del nombre antes de la @
-  let nuevonombre = nombre(0, length) + "...";
+  let nuevonombre = nombre.substring(0, tamaño) + "...";
 
   return nuevonombre + "@" + dominio;
 }
 
 function CortarP() {
-  let email = prompt("Introduce un email");
-  console.log(Cortar(email));
+  console.log(Cortar("estrellachamorro@gmail.com"));
 }
