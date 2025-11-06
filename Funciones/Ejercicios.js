@@ -198,3 +198,88 @@ function Cortar(email) {
 function CortarP() {
   console.log(Cortar("estrellachamorro@gmail.com"));
 }
+
+/*14.- Define una función que sustituya los espacios en blanco por un guión y, además, convierta todo el 
+texto en minúsculas. Escribe también el código necesario para probarla. */
+
+function Espacios() {
+  let rdo = "";
+  let texto = "Mi casa es de color rosa";
+  texto = texto.toLocaleLowerCase();
+  let palabras = texto.split(" "); //split"" separa letra y split " "
+  for (const elemento of palabras) {
+    rdo += elemento + "-";
+  }
+  rdo = rdo.slice(0, -1); //hasta el último caracter menos uno quitamos el guión ultimo
+  console.log(rdo);
+}
+
+/*15.- Escribe una función que reciba dos parámetros, string1 y string2, y que devuelva true si string1 
+contiene a string2, o false en caso contrario.*/
+function Contiene(string1, string2) {
+  return string1.includes(string2);
+}
+function ContieneP() {
+  console.log(Contiene("Hola mi perro es Bimbo", " perro")); //el segundo parametro es lo que quiero buscar
+  console.log(Contiene("Hola mundo", "mundo"));
+  console.log(Contiene("Mi gato", "perro"));
+}
+
+/*16.- Crea una función que genere un número aleatorio, entre dos valores dados. Utiliza esta función para 
+simular el funcionamiento de un dado. */
+
+function Numeroaleatorio() {
+  let numero1 = parseInt(prompt("Introduce un numero minimo "));
+  let numero2 = parseInt(prompt("Introduce un numero maximo"));
+  let numero = Math.random() * (numero2 - numero1 + 1);
+  console.log(numero);
+}
+
+/*17.- Define una función que devuelva una cadena de texto con el día actual. Además, hay que pasarle el 
+separador. Suponiendo que el separador es “-”, el formato de salida será “dd-mm-yyyy” */
+
+function CadenaTexto() {
+  let fecha = new Date(2025, 11, 6);
+  let texto = "Mi trabajo está corregido";
+  console.log(
+    texto +
+      " " +
+      fecha.getDay() +
+      "-" +
+      fecha.getMonth() +
+      "-" +
+      fecha.getFullYear()
+  );
+}
+
+/*18.- En una empresa las facturas vencen a los 20 días. Crear una función que tendrá como parámetro una 
+fecha con el formato 'dd-mm-YYYY' y devolverá la fecha de vencimiento (con el mismo formato). Hay 
+que tener en cuenta que, si la fecha de vencimiento cae en fin de semana, habrá que mostrar la fecha del 
+viernes anterior.*/
+
+function Facturas(fecha) {
+  let partes = fecha.split("-");
+  let dia = parseInt(partes[0]);
+  let mes = parseInt(partes[1] - 1); //porque los meses empiezan en 0
+  let año = parseInt(partes[2]);
+
+  let f = new Date(año, mes, dia);
+  f.setDate(f.getDate() + 20); //tenemos que cambiarlo tambien en el get
+
+  // Si cae en sábado (6), restamos 1 día → viernes
+  // Si cae en domingo (0), restamos 2 días → viernes
+  if (f.getDay() == 6) {
+    f.setDate(f.getDate() - 1);
+  } else if (f.getDay() == 0) {
+    f.setDate(f.getDate() - 2);
+  }
+  // Formateamos a dd-mm-YYYY otra vez
+  let diaFinal = f.getDate().toString().padStart(2, "0"); //porque padStart solo funciona con String
+  let mesFinal = (f.getMonth() + 1).toString().padStart(2, "0");
+  let añoFinal = f.getFullYear();
+
+  return diaFinal + "-" + mesFinal + "-" + añoFinal;
+}
+function FacturasP() {
+  console.log(Facturas("10-03-2024"));
+}
