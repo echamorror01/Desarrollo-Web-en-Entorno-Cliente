@@ -283,3 +283,31 @@ function Facturas(fecha) {
 function FacturasP() {
   console.log(Facturas("10-03-2024"));
 }
+
+/* 19. Hacer una función que reciba dos parámetros (mes y año). Con esos datos tiene que mostrar la
+siguiente información (por ejemplo, si le pasamos el mes de Octubre y el año 2020: */
+
+function MesAñoP() {
+  let mes = prompt("Introduce un mes");
+  let año = prompt("Introduce el año");
+  alert(MesAño(mes, año));
+}
+function MesAño(mes, año) {
+  mes = mes - 1; //le restamos porque si me dice diciembre aqui es mes 11
+  let fecha = new Date(año, mes, 1);
+  let resultado = "Semana 1:";
+  let dias = ["dom", "lun", "mar", "mier", "jue", "vie", "sab"];
+  let numsemana = 1;
+  while (fecha.getMonth() == mes) {
+    let diasemana = fecha.getDay();
+
+    if (diasemana == 0) {
+      resultado += "\n";
+      numsemana++;
+      resultado += "Semana" + numsemana + " :";
+    }
+    resultado += fecha.getDate() + "(" + dias[fecha.getDay()] + ")";
+    fecha.setDate(fecha.getDate() + 1);
+  }
+  return resultado;
+}
