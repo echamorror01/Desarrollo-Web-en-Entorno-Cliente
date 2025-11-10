@@ -313,3 +313,69 @@ function MesAño(mes, año) {
   }
   return resultado;
 }
+/*.20.- Crear un calendario del estilo al que aparece en la siguiente imagen*/
+
+function MuestraMes(mes, año) {
+  mes = mes - 1;
+  let meses = [
+    "Ene",
+    "Feb",
+    "Mar",
+    "Abr",
+    "May",
+    "Jun",
+    "Jul",
+    "Ago",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dic",
+  ];
+  let resultado = "<div id='calendario'><div class='mes'>";
+  resultado += "<h3>" + meses[mes] + "</h3>";
+  resultado += "<table><tr>";
+  let fecha = new Date(año, mes, 1);
+  numDiasenBlanco = fecha.getDay() == 0 ? 6 : fecha.getDay() - 1; //esto es si el dia es 0 pintame 6 huecos  en blancos  si no restame 1 y pintamelo
+  let trcerrado = false;
+
+  for (let i = 0; i < numDiasenBlanco; i++) {
+    resultado += "<td>&nbsp;&nbsp;</td>";
+  }
+
+  while (mes == fecha.getMonth()) {
+    let diaSemana = fecha.getDay();
+    if (diaSemana == 0) {
+      //es domingo
+      resultado += "<td>" + fecha.getDate() + "</td>";
+      resultado += "</tr>";
+      trcerrado = true;
+    } else {
+      //no es domingo
+      resultado += "<td>" + fecha.getDate() + "</td>";
+      trcerrado = false;
+    }
+
+    fecha.setDate(fecha.getDate() + 1);
+  }
+
+  if (trcerrado == false) {
+    //huecos en blanco
+    numDiasenBlanco = 7 - fecha.getDay();
+    for (let i = 0; i < numDiasenBlanco; i++) {
+      resultado += "<td>&nbsp;&nbsp;</td>";
+    }
+    resultado += "</tr>";
+  }
+
+  resultado += "</table>";
+  resultado += "</div>";
+  return resultado;
+}
+
+function MuestraMesP() {
+  let rdo = "";
+  for (let i = 1; i <= 12; i++) {
+    rdo += MuestraMes(i, 2024);
+  }
+  document.getElementById("rdo").innerHTML = rdo;
+}
