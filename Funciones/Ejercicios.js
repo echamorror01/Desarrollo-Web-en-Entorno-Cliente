@@ -231,25 +231,25 @@ simular el funcionamiento de un dado. */
 function Numeroaleatorio() {
   let numero1 = parseInt(prompt("Introduce un numero minimo "));
   let numero2 = parseInt(prompt("Introduce un numero maximo"));
-  let numero = Math.random() * (numero2 - numero1 + 1);
+  let numero = Math.floor(Math.random() * (numero2 - numero1 + 1));
   console.log(numero);
 }
 
 /*17.- Define una función que devuelva una cadena de texto con el día actual. Además, hay que pasarle el 
 separador. Suponiendo que el separador es “-”, el formato de salida será “dd-mm-yyyy” */
 
-function CadenaTexto() {
-  let fecha = new Date(2025, 11, 6);
+function CadenaTexto(separador) {
+  let fecha = new Date();
   let texto = "Mi trabajo está corregido";
-  console.log(
-    texto +
-      " " +
-      fecha.getDay() +
-      "-" +
-      fecha.getMonth() +
-      "-" +
-      fecha.getFullYear()
-  );
+  let dia = fecha.getDate().toString().padStart(2, "0");
+  let mes = (fecha.getMonth() + 1).toString().padStart(2, "0");
+  let año = fecha.getFullYear();
+  let resultado = texto + dia + separador + mes + separador + año;
+  return resultado;
+}
+
+function CadenaTextoP() {
+  console.log(CadenaTexto("-"));
 }
 
 /*18.- En una empresa las facturas vencen a los 20 días. Crear una función que tendrá como parámetro una 
@@ -274,7 +274,7 @@ function Facturas(fecha) {
     f.setDate(f.getDate() - 2);
   }
   // Formateamos a dd-mm-YYYY otra vez
-  let diaFinal = f.getDate().toString().padStart(2, "0"); //porque padStart solo funciona con String
+  let diaFinal = f.getDate().toString().padStart(2, "0"); //porque padStart solo funciona con String y esto es para que si sale 1 ponga 01
   let mesFinal = (f.getMonth() + 1).toString().padStart(2, "0");
   let añoFinal = f.getFullYear();
 
@@ -292,6 +292,7 @@ function MesAñoP() {
   let año = prompt("Introduce el año");
   alert(MesAño(mes, año));
 }
+
 function MesAño(mes, año) {
   mes = mes - 1; //le restamos porque si me dice diciembre aqui es mes 11
   let fecha = new Date(año, mes, 1);
@@ -302,6 +303,7 @@ function MesAño(mes, año) {
     let diasemana = fecha.getDay();
 
     if (diasemana == 0) {
+      //que es domingo
       resultado += "\n";
       numsemana++;
       resultado += "Semana" + numsemana + " :";
