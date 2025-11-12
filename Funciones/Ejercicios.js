@@ -316,7 +316,7 @@ function MesAño(mes, año) {
 /*.20.- Crear un calendario del estilo al que aparece en la siguiente imagen*/
 
 function MuestraMes(mes, año) {
-  mes = mes - 1;
+  mes = mes - 1; //PORQUE SI EL USUARIO PASA ENERO ENERO ES 1 PERO EN JAVA ES 0
   let meses = [
     "Ene",
     "Feb",
@@ -331,7 +331,8 @@ function MuestraMes(mes, año) {
     "Nov",
     "Dic",
   ];
-  let resultado = "<div id='calendario'><div class='mes'>";
+  let resultado = "<div id='calendario'><div class='mes'>"; //<DIV ID="CALENDARIO">
+  //DIV CLASS="MES"
   resultado += "<h3>" + meses[mes] + "</h3>";
   resultado += "<table><tr>";
   let fecha = new Date(año, mes, 1);
@@ -343,10 +344,10 @@ function MuestraMes(mes, año) {
   }
 
   while (mes == fecha.getMonth()) {
-    let diaSemana = fecha.getDay();
+    let diaSemana = fecha.getDay(); //DIA DE LA SEMANA
     if (diaSemana == 0) {
       //es domingo
-      resultado += "<td>" + fecha.getDate() + "</td>";
+      resultado += "<td>" + fecha.getDate() + "</td>"; //DIA DEL MES
       resultado += "</tr>";
       trcerrado = true;
     } else {
@@ -359,6 +360,7 @@ function MuestraMes(mes, año) {
   }
 
   if (trcerrado == false) {
+    //HUECCOS DEL FINAL
     //huecos en blanco
     numDiasenBlanco = 7 - fecha.getDay();
     for (let i = 0; i < numDiasenBlanco; i++) {
