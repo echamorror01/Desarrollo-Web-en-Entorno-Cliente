@@ -360,8 +360,7 @@ function MuestraMes(mes, año) {
   }
 
   if (trcerrado == false) {
-    //HUECCOS DEL FINAL
-    //huecos en blanco
+    //HUECOS DEL FINAL EN BLANCO
     numDiasenBlanco = 7 - fecha.getDay();
     for (let i = 0; i < numDiasenBlanco; i++) {
       resultado += "<td>&nbsp;&nbsp;</td>";
