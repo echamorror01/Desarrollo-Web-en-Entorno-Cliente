@@ -16,6 +16,7 @@ function provincia() {
   ];
   let conjunto = new Set();
   for (const ciudades of array) {
+    //podemos usar split porque dentro es una cadena de texto
     let provincia = ciudades.split(":")[0]; //cogemos las provincias
     conjunto.add(provincia);
   }
