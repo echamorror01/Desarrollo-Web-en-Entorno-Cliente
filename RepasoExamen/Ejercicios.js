@@ -108,13 +108,13 @@ function dado() {
   let resultado = "";
   let miarray = [];
   for (let i = 0; i < 36000; i++) {
-    let dado1 = Math.floor(Math.random() * cantidadElementos + 1);
+    let dado1 = Math.floor(Math.random() * cantidadElementos + 1); // ESTO SIEMRPE ES ASI
     let dado2 = Math.floor(Math.random() * cantidadElementos + 1);
     let suma = dado1 + dado2;
 
     if (miarray[suma] != undefined) {
       /* si en mi array  existe el numero le suma 1  */
-      miarray[suma] += 1;
+      miarray[suma] += 1; // PORME EN EL VALOR POR EJEMPLO 4 UN DOS SI HA SALIDO
     } else {
       miarray[suma] = 1;
       //si no lo creas en el array con valor 1
@@ -132,4 +132,82 @@ function dado() {
       "\n";
   }
   alert(resultado);
+}
+
+/*Hacer un trivial sencillo. El funcionamiento del programa será el siguiente: - Te doy los arrays enunciados, respuestas y soluciones.  
+enunciados[n] = ‘Enunciado de la pregunta’; 
+respuestas[n] = array(‘respuesta 1’,’respuesta 2’,’respuesta 3’,’respuesta 4’); 
+solucion[n] = indice; // Indice de la respuesta correcta - Crear una función: preguntaSimple 
+○ Recibe como parámetros un texto (con el enunciado de la pregunta), un array (con las 
+posibles respuestas) y número (indica número del elemento del array que tiene la respuesta correcta) 
+○ Esta función genera un prompt con el enunciado y las respuestas, y el usuario tiene que 
+indicar el ‘número de la respuesta correcta’.  
+○ Devuelve true si ha acertado y false en caso contrario. 
+● El programa elegirá 5 preguntas (de las 10) al azar(sin repetir la misma pregunta) y se las irá preguntando al 
+usuario. 
+● Al terminar, el programa mostrará un mensaje indicando la puntuación de respuestas 
+acertadas. 
+● Y, por último, le pregunta al usuario si quiere volver a jugar. 
+*/
+
+function trivial(texto) {
+  const enunciados = [
+    "¿Cuál es el río más largo del mundo?",
+    "¿En qué año llegó el ser humano a la Luna?",
+    "¿Cuál es la capital de Australia?",
+    "¿Quién pintó La última cena?",
+    "¿Cuál es el metal más abundante en la corteza terrestre?",
+    "¿Qué país tiene la mayor población del mundo?",
+    "¿En qué continente se encuentra la cordillera de los Andes?",
+    "¿Qué científico propuso la teoría de la relatividad?",
+    "¿Cuál es el océano más grande del planeta?",
+    "¿Qué país inventó la pólvora?",
+  ];
+  const respuestas = [
+    ["Amazonas", "Nilo", "Yangtsé", "Misisipi"],
+    ["1965", "1969", "1972", "1959"],
+    ["Sídney", "Camberra", "Melbourne", "Perth"],
+    ["Miguel Ángel", "Leonardo da Vinci", "Rafael", "Caravaggio"],
+    ["Hierro", "Cobre", "Aluminio", "Plata"],
+    ["India", "Estados Unidos", "China", "Indonesia"],
+    ["Asia", "América", "Europa", "África"],
+    ["Isaac Newton", "Albert Einstein", "Nikola Tesla", "Galileo Galilei"],
+    ["Atlántico", "Índico", "Ártico", "Pacífico"],
+    ["China", "Japón", "Corea", "India"],
+  ];
+  const solucion = [
+    1, // Amazonas (aunque hay debate, hoy se considera el más largo)
+    2, // 1969
+    2, // Camberra
+    2, // Leonardo da Vinci
+    3, // Aluminio
+    3, // China
+    2, // América (Andes)
+    2, // Einstein
+    4, // Pacífico
+    1, // China
+  ];
+  let acierto = 0;
+  let indices = new Set();
+  while (indices.size < 5) {
+    let numero = Math.floor(Math.random() * 10); //genero 5 numeros para las preguntas
+    indices.add(numero);
+  }
+  for (let i of indices) {
+    // en la i esta cada elemento del set
+    let mensaje = enunciados[i] + "\n";
+    for (let j = 0; j < respuestas[i].length; j++) {
+      mensaje = mensaje + (j + 1) + "." + respuestas[i][j] + "\n";
+    }
+    let respusuario = prompt(mensaje);
+    //saber si es cierta
+    if (Number(respusuario) == solucion[i]) {
+      acierto++;
+    }
+  }
+  alert("Has acertado " + acierto + "de 5 preguntas");
+  let jugarOtraVez = prompt("¿Quieres jugar de nuevo? (s/n)").toLowerCase();
+  if (jugarOtraVez == "s") {
+    trivial();
+  }
 }

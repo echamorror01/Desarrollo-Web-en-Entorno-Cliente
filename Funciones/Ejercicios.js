@@ -242,7 +242,7 @@ function CadenaTexto(separador) {
   let fecha = new Date();
   let texto = "Mi trabajo está corregido";
   let dia = fecha.getDate().toString().padStart(2, "0");
-  let mes = (fecha.getMonth() + 1).toString().padStart(2, "0");
+  let mes = (fecha.getMonth() + 1).toString().padStart(2, "0"); //Esto significa que si hoy es noviembre (11-2025), getMonth() devuelve 10, no 11.
   let año = fecha.getFullYear();
   let resultado = texto + dia + separador + mes + separador + año;
   return resultado;
@@ -258,7 +258,7 @@ que tener en cuenta que, si la fecha de vencimiento cae en fin de semana, habrá
 viernes anterior.*/
 
 function Facturas(fecha) {
-  let partes = fecha.split("-");
+  let partes = fecha.split("-"); //SEPARADOR
   let dia = parseInt(partes[0]);
   let mes = parseInt(partes[1] - 1); //porque los meses empiezan en 0
   let año = parseInt(partes[2]);
