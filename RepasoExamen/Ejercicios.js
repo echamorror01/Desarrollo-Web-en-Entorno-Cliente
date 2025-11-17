@@ -143,9 +143,9 @@ posibles respuestas) y número (indica número del elemento del array que tiene 
 ○ Esta función genera un prompt con el enunciado y las respuestas, y el usuario tiene que 
 indicar el ‘número de la respuesta correcta’.  
 ○ Devuelve true si ha acertado y false en caso contrario. 
-● El programa elegirá 5 preguntas (de las 10) al azar(sin repetir la misma pregunta) y se las irá preguntando al 
+El programa elegirá 5 preguntas (de las 10) al azar(sin repetir la misma pregunta) y se las irá preguntando al 
 usuario. 
-● Al terminar, el programa mostrará un mensaje indicando la puntuación de respuestas 
+ Al terminar, el programa mostrará un mensaje indicando la puntuación de respuestas 
 acertadas. 
 ● Y, por último, le pregunta al usuario si quiere volver a jugar. 
 */
