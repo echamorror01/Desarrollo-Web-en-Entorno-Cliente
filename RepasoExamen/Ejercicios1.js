@@ -143,7 +143,7 @@ function votos() {
     "Aceuchal-15puntos",
     "Zafra-6puntos",
   ];
-  let resultado = {}; //objeto vacio para guardar aqui las ciudades y los puntos
+  let resultado = []; //objeto vacio para guardar aqui las ciudades y los puntos
   for (const contenido of ciudades) {
     let partes = contenido.split("-");
     let ciudad = partes[0];
@@ -159,11 +159,40 @@ function votos() {
   let rdo = "";
 
   for (let c in resultado) {
-    rdo += c + resultado[c] + "puntos" + "\n";
+    rdo += c + ": " + resultado[c] + " puntos" + "\n";
   }
 
   alert(rdo);
   /* 7.1. Ordenar las ciudades para que se muestren según sus puntos de mayor a menor, 
 en el ejemplo anterior se mostraría: Mérida: 24 puntos, Badajoz: 13 puntos y Zafra: 12 
 puntos. Mostrar al usuario el resultado en una ventana emergente. */
+
+  let ordenado = [];
+  let rdo2 = "";
+  while (Object.keys(resultado).length > 0) {
+    // mientras las claves sean mayores de 0
+    let indiceMayor = "";
+    let valorMayor = 0;
+
+    for (const indice in resultado) {
+      //para asignar el mayor
+      if (resultado[indice] > valorMayor) {
+        indiceMayor = indice;
+        valorMayor = resultado[indice];
+      }
+    }
+    if (ordenado[indiceMayor] == undefined) {
+      //aqui lo metemos en mi array ordenado
+      ordenado[indiceMayor] = valorMayor;
+    }
+
+    delete resultado[indiceMayor]; //aqui lo borramos para que no vuelva a salir el mayor
+  }
+  for (const indice in ordenado) {
+    {
+      rdo2 += indice + ": " + ordenado[indice] + "\n"; //aqui recorremos el array ordenado
+    }
+  }
+
+  alert(rdo2);
 }
