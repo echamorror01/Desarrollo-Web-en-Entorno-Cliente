@@ -47,13 +47,123 @@ los 3 primeros y el resto que los rellene con asteriscos. */
 function ocultar() {
   let resultado = "";
   let usuario = "Estrella";
-  let palabras = usuario.split(" ");
-  for (let indice in palabras) {
-    if (indice <= 3) {
-      resultado += palabras[indice];
+  for (let i = 0; i < usuario.length; i++) {
+    if (i < 3) {
+      resultado += usuario[i];
     } else {
-      resultado += palabras[indice] + "*";
+      resultado += "*";
     }
   }
   alert(resultado);
+}
+
+/* Ejercicio 4. Crear un ejercicio que pida el número de divs a mostrar y cuántos párrafos
+tendrán dichos divs. Se deberá escribir en pantalla los divs con una clase que definas
+que lo que haga sea poner un color de fondo y un margen inferior de 10px para
+separar los divs y dentro de cada div tantos párrafos con el texto Parrafo X donde X
+será las veces que ha aparecido, por ejemplo: Parrafo:1, Parrafo:2...*/
+
+function div() {
+  let contador = 0;
+  let div = parseInt(prompt("Dime el numero de div a mostrar"));
+  let p = parseInt(
+    prompt("Introduce el numeros de p que tendran los parrafos ")
+  );
+  for (let i = 0; i < div; i++) {
+    //aqui tengo que abrir el div con la clase
+    for (let j = 0; j < p; j++) {
+      //mostrar el parrafo con el contador
+      contador++;
+    }
+    //aqui cerrar el div
+  }
+}
+/*Nos dan un array con los números de la ONCE de los últimos 10 días:
+“12345”,“00124”,“04586”,“98472”,“71920”,“54102”,“00013”,“29863”,“10978”,“47101”
+Se debe pedir al usuario que inserte el número que quiere comprobar y mostrará “El
+número X ha sido premiado en los últimos 10 días” o “El número X no ha sido
+premiado. Sigue intentándolo”.
+Hay que tener en cuenta que el usuario puede poner el número “13” y el programa
+mostrará que sí ha salido premiado, por lo que habrá que controlar los ceros a la
+izquierda: Si el usuario pone “13” el mensaje será “El número 00013 ha sido
+premiado…. */
+function once() {
+  let cupon = prompt("Introduce el numero que quieres comprobar");
+  let premiado = cupon.padStart(5, "0");
+  let resultados = [
+    "12345",
+    "00124",
+    "04586",
+    "98472",
+    "71920",
+    "54102",
+    "00013",
+    "29863",
+    "10978",
+    "47101",
+  ];
+  for (const indice in resultados) {
+    // const valor of resultados// premiados==valor seria lo mismo
+    if (premiado == resultados[indice]) {
+      return "El numero" + premiado + "ha sido premiado en los ultimos 10 dias";
+    }
+  }
+  return "El numero" + premiado + "no ha sido premiado";
+}
+
+function resultado() {
+  alert(once());
+}
+
+/* Ejercicio 6. Nos han encargado realizar un programa para el recuento de votos de las
+mejores luces de navidad de Extremadura, para ellos nos dan un array donde está el
+nombre del pueblo y el número de puntos asignados. Como los puntos vienen de
+distintas entidades y organismos para su recogida, puede haber la misma ciudad
+repetida varias veces, por lo que sumaremos los puntos a la misma ciudad. Ejemplo, si
+nos dan el array: Zafra-8puntos, Mérida-23puntos, Badajoz-13puntos, Zafra-4puntos,
+Mérida-1punto. Debemos mostrar que Zafra ha obtenido 12 puntos, Mérida 24 puntos
+y Badajoz 13 puntos.*/
+
+function votos() {
+  let ciudades = [
+    "Zafra-8puntos",
+    "Mérida-23puntos",
+    "Badajoz-4puntos",
+    "Zafra-3puntos",
+    "Almendralejo-12puntos",
+    "Mérida-4puntos",
+    "Badajoz-15puntos",
+    "Zafra-2puntos",
+    "Mérida-7puntos",
+    "Zafra-11puntos",
+    "Almendralejo-31puntos",
+    "Aceuchal-3puntos",
+    "Almendralejo-7puntos",
+    "La Parra-17puntos",
+    "Aceuchal-15puntos",
+    "Zafra-6puntos",
+  ];
+  let resultado = {}; //objeto vacio para guardar aqui las ciudades y los puntos
+  for (const contenido of ciudades) {
+    let partes = contenido.split("-");
+    let ciudad = partes[0];
+    let puntos = parseInt(partes[1]);
+    if (resultado[ciudad] !== undefined) {
+      //si existe
+      resultado[ciudad] += puntos;
+    } else {
+      resultado[ciudad] = puntos;
+    }
+  }
+
+  let rdo = "";
+
+  for (let c in resultado) {
+    rdo += c + resultado[c] + "puntos" + "\n";
+  }
+
+  alert(rdo);
+  /* 7.1. Ordenar las ciudades para que se muestren según sus puntos de mayor a menor, 
+en el ejemplo anterior se mostraría: Mérida: 24 puntos, Badajoz: 13 puntos y Zafra: 12 
+puntos. Mostrar al usuario el resultado en una ventana emergente. */
 }
