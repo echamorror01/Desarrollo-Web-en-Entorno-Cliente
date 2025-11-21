@@ -143,11 +143,11 @@ function votos() {
     "Aceuchal-15puntos",
     "Zafra-6puntos",
   ];
-  let resultado = []; //objeto vacio para guardar aqui las ciudades y los puntos
+  let resultado = [];
   for (const contenido of ciudades) {
     let partes = contenido.split("-");
     let ciudad = partes[0];
-    let puntos = parseInt(partes[1]);
+    let puntos = parseInt(partes[1]); //7puntos hago parseint y me quedo con el 7 tambien puedo cortar por la p
     if (resultado[ciudad] !== undefined) {
       //si existe
       resultado[ciudad] += puntos;
@@ -196,3 +196,102 @@ puntos. Mostrar al usuario el resultado en una ventana emergente. */
 
   alert(rdo2);
 }
+
+/*Ejercicio 7. Nos han encargado que realicemos un codificador/decodificador de 
+mensajes sencillo para poder transmitir los mensajes de la empresa de forma segura. 
+Para ello, nos dan un array donde cada letra tiene una posición en el vector fija, de 
+forma que, por ejemplo, si nos dan el número 5 codificado, se descodifica buscando en 
+la posición 5 del array, y esa será la letra descodificada. Si por ejemplo tenemos el 
+array: 
+Si son dicen que codifiquemos la palabra “CASA”, ésta debe codificarse como 4-2-6-2. 
+Como puede verse, los dígitos van separados por un guión. Ojo, los dígitos del array 
+son siempre en mayúsculas.  */
+
+function codificador() {
+  let vectorCodificacion = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "Ñ",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+    " ",
+  ];
+  let palabra = prompt("Introduce una palabra").toUpperCase();
+  let caracter = palabra.split("");
+  let rdo = "";
+  for (const i in caracter) {
+    for (const indice in vectorCodificacion) {
+      if (caracter[i] == vectorCodificacion[indice]) {
+        rdo += indice + "-";
+      }
+    }
+  }
+  rdo = rdo.slice(0, -1);
+  alert(rdo);
+}
+function codi() {
+  let letras = ["F", "H", "A", "B", "C", "D", "S", "U", "X"];
+  let palabra = prompt("Introduce una palabra").toUpperCase();
+  let caracter = palabra.split("");
+  let rdo = "";
+  for (const i in caracter) {
+    for (const indice in letras) {
+      if (caracter[i] == letras[indice]) {
+        rdo += indice + "-";
+      }
+    }
+  }
+  rdo = rdo.slice(0, -1); // esto me quita el guion de atras oge la cadena desde el inicio hasta el penúltimo carácter
+  alert(rdo);
+}
+function codificar() {
+  /*7.1. Crear un botón en el .html llamado “Codificar” que llame a la función de codificar 
+y ésta sea la que pida al usuario: ¿Qué mensaje quieres codificar?. La función recoge 
+los caracteres, los codifica y muestra la decodificación en una ventana emergente. 
+El mensaje debe mostrase como se indica, por ejemplo 4-2-6-2, sin ningún guión de 
+más al final. Si un carácter no se encuentra en el vector, avisar al usuario que “El 
+carácter X no se puede codificar” y finalice el programa sin codificar el mensaje.  */
+  let letras = ["F", "H", "A", "B", "C", "D", "S", "U", "X"];
+  let mensaje = prompt("¿Que mensaje quieres codificar").toUpperCase();
+  let caracter = mensaje.split("");
+  let rdo = "";
+  let encontrado = false;
+  for (const i in caracter) {
+    for (const indice in letras) {
+      if (caracter[i] == letras[indice]) {
+        rdo += indice + "-";
+        encontrado = true;
+        break;
+      }
+    }
+    if (!encontrado) {
+      alert("El caracter" + caracter[i] + "no se ha encontrado");
+      return; //detiene la funcion
+    }
+  }
+  rdo = rdo.slice(0, -1);
+  alert(rdo);
+}
+function descodificar() {}
