@@ -69,14 +69,17 @@ function div() {
   let p = parseInt(
     prompt("Introduce el numeros de p que tendran los parrafos ")
   );
+  let rdo = "";
   for (let i = 0; i < div; i++) {
     //aqui tengo que abrir el div con la clase
+    rdo += "<div>";
     for (let j = 0; j < p; j++) {
       //mostrar el parrafo con el contador
-      contador++;
+      rdo += "<p>" + contador++ + "</p>";
     }
-    //aqui cerrar el div
+    rdo += "</div>";
   }
+  document.getElementById("tabla").innerHTML = rdo;
 }
 /*Nos dan un array con los números de la ONCE de los últimos 10 días:
 “12345”,“00124”,“04586”,“98472”,“71920”,“54102”,“00013”,“29863”,“10978”,“47101”
@@ -206,38 +209,37 @@ array:
 Si son dicen que codifiquemos la palabra “CASA”, ésta debe codificarse como 4-2-6-2. 
 Como puede verse, los dígitos van separados por un guión. Ojo, los dígitos del array 
 son siempre en mayúsculas.  */
-
+let vectorCodificacion = [
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F",
+  "G",
+  "H",
+  "I",
+  "J",
+  "K",
+  "L",
+  "M",
+  "N",
+  "Ñ",
+  "O",
+  "P",
+  "Q",
+  "R",
+  "S",
+  "T",
+  "U",
+  "V",
+  "W",
+  "X",
+  "Y",
+  "Z",
+  " ",
+];
 function codificador() {
-  let vectorCodificacion = [
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-    "H",
-    "I",
-    "J",
-    "K",
-    "L",
-    "M",
-    "N",
-    "Ñ",
-    "O",
-    "P",
-    "Q",
-    "R",
-    "S",
-    "T",
-    "U",
-    "V",
-    "W",
-    "X",
-    "Y",
-    "Z",
-    " ",
-  ];
   let palabra = prompt("Introduce una palabra").toUpperCase();
   let caracter = palabra.split("");
   let rdo = "";
@@ -252,7 +254,7 @@ function codificador() {
   alert(rdo);
 }
 function codi() {
-  let letras = ["F", "H", "A", "B", "C", "D", "S", "U", "X"];
+  let letras = vectorCodificacion;
   let palabra = prompt("Introduce una palabra").toUpperCase();
   let caracter = palabra.split("");
   let rdo = "";
@@ -273,7 +275,7 @@ los caracteres, los codifica y muestra la decodificación en una ventana emergen
 El mensaje debe mostrase como se indica, por ejemplo 4-2-6-2, sin ningún guión de 
 más al final. Si un carácter no se encuentra en el vector, avisar al usuario que “El 
 carácter X no se puede codificar” y finalice el programa sin codificar el mensaje.  */
-  let letras = ["F", "H", "A", "B", "C", "D", "S", "U", "X"];
+  let letras = vectorCodificacion;
   let mensaje = prompt("¿Que mensaje quieres codificar").toUpperCase();
   let caracter = mensaje.split("");
   let rdo = "";
@@ -293,5 +295,66 @@ carácter X no se puede codificar” y finalice el programa sin codificar el men
   }
   rdo = rdo.slice(0, -1);
   alert(rdo);
+  tabla(mensaje, rdo);
 }
-function descodificar() {}
+function descodificar() {
+  /* 7.2. Crear un botón en el .html llamado “Descodificar” que llame a la función
+descodificar, que pedirá al usuario: ¿Qué mensaje quieres descodificar?. Se indica el
+mensaje en el mismo formato descodificado: 4-62-6-2. Si el carácter no
+se puede descodificar, que muestre al usuario el mensaje “El carácter X no se puede
+descodificar” y finalice el programa sin descodificar el mensaje*/
+  let letras = ["F", "H", "A", "B", "C", "D", "S", "U", "X"];
+  let mensaje = prompt("¿Que mensaje quieres descodificar");
+  let caracter = mensaje.split("");
+  let rdo = "";
+  let encontrado = false;
+  for (const i in caracter) {
+    for (const indice in letras) {
+      if (caracter[i] == indice) {
+        rdo += letras[indice] + "-";
+        encontrado = true;
+        break;
+      }
+    }
+    if (!encontrado) {
+      alert("El caracter " + caracter[i] + "no se ha encontrado");
+      return; //detiene la funcion
+    }
+  }
+  rdo = rdo.slice(0, -1);
+  alert(rdo);
+  tabla(mensaje, rdo);
+}
+let cadenaCodificaciones =
+  "<table><tr><th>Mensaje</th><th>Codificacion/Decodificación</th><th>Fecha</th></tr>";
+function tabla(mensaje, resultado) {
+  /* 7.3. Mostrar en el .html una tabla donde se van rellenando las filas con el mensaje
+codificado/descodificado, el resultado de codificar/descodificar y la fecha cuando se
+realizó la codificación/decodificación. Por ejemplo:
+La fecha está formateada como dia / mes / año # hora : minutos : segundos. Hay que
+tener en cuenta que la hora, minuto y segundo siempre deben tener 2 dígitos, por
+ejemplo, la 1 y cinco de la madrugada con 3 segundos se muestra como: 01:05:03.*/
+
+  let fecha = new Date(); //toLocalString pone en formato la fecha
+
+  cadenaCodificaciones +=
+    "<tr><td>" +
+    mensaje +
+    "</td><td>" +
+    resultado +
+    "</td><td>" +
+    fecha.getDate() +
+    "/" +
+    fecha.getMonth() +
+    "/" +
+    fecha.getFullYear() +
+    "#" +
+    fecha.getHours() +
+    ":" +
+    fecha.getMinutes() +
+    ":" +
+    fecha.getSeconds().toString().padStart(2, "0") +
+    "</td></tr>";
+
+  document.getElementById("tabla").innerHTML = cadenaCodificaciones;
+}
