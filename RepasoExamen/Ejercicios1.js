@@ -304,7 +304,7 @@ descodificar, que pedirá al usuario: ¿Qué mensaje quieres descodificar?. Se i
 mensaje en el mismo formato descodificado: 4-62-6-2. Si el carácter no
 se puede descodificar, que muestre al usuario el mensaje “El carácter X no se puede
 descodificar” y finalice el programa sin descodificar el mensaje*/
-  let letras = ["F", "H", "A", "B", "C", "D", "S", "U", "X"];
+  let letras = vectorCodificacion;
   let mensaje = prompt("¿Que mensaje quieres descodificar");
   let caracter = mensaje.split("");
   let rdo = "";
@@ -358,4 +358,82 @@ ejemplo, la 1 y cinco de la madrugada con 3 segundos se muestra como: 01:05:03.*
     "</td></tr>";
 
   document.getElementById("tabla").innerHTML = cadenaCodificaciones;
+}
+
+/* Ejercicio 8. Nos piden hacer el juego de Piedra, Papel, Tijera, Lagarto, Spock, para ello,
+nos dan un html y un css con todo lo necesario, lo único que tendremos que
+implementar será la pulsación de los botones “Jugar” e “Historial”.
+8.1. Al pulsar el botón “Jugar”, mostrará un símbolo aleatorio de los 5 disponibles,
+dicho símbolo se nos mostrará en el HTML en el div llamado “jugador1 o jugador2”.
+Como el juego podrá ampliarse a más jugadores en el futuro o más símbolos,
+debemos crear una función llamada “aleatorio” que nos realizará el número aleatorio
+en función del tamaño del array y nos devolverá dicho número para ser utilizado en la
+función jugar.
+8.2. Crear un historial de resultados del juego, cada vez que pulsemos el botón
+Historial, los div llamados “historialJ1 e historialJ2” se rellenarán con los resultados de
+las tiradas.
+8.3. Realizar las estadísticas del juego. Se mostrará en el div “estadísticas” el número
+de veces que ha salido un símbolo en particular. Lo puedes integrar en el ejercicio o
+hacer uno aparte, si no has acabado el Ejercicio 3, para esto último, te doy un array de
+tiradas en el fichero codigoNecesario.txt*/
+
+let simbolosJuego = ["✂️", "🖖", "🧻", "🦎", "🪨"];
+let historialTiradas = [
+  "✂️",
+  "🧻",
+  "🦎",
+  "🪨",
+  "🪨",
+  "✂️",
+  "🖖",
+  "🖖",
+  "🦎",
+  "🪨",
+  "🦎",
+  "✂️",
+  "🧻",
+  "🖖",
+  "🖖",
+  "✂️",
+  "✂️",
+  "✂️",
+  "🖖",
+  "🦎",
+  "🪨",
+  "✂️",
+  "🖖",
+  "🧻",
+  "🪨",
+];
+
+let historialJ1 = [];
+let historialJ2 = [];
+let jugador1 = "";
+let jugador2 = "";
+
+function aleatorio(tamaño) {
+  return Math.floor(Math.random() * tamaño);
+}
+
+function jugar() {
+  let numero = aleatorio(simbolosJuego.length);
+  let simboloJugador1 = simbolosJuego[numero];
+  historialJ1.push(simboloJugador1);
+  let numero2 = aleatorio(simbolosJuego.length);
+  historialJ2.push(simboloJugador2);
+  let simboloJugador2 = simbolosJuego[numero2]; //sacamos el emoticono
+  document.getElementById("jugador1").innerHTML = simboloJugador1;
+  document.getElementById("jugador2").innerHTML = simboloJugador2;
+}
+
+function historial() {
+  for (const valor of jugador1) {
+    jugador1 += valor + "<br>";
+  }
+
+  for (const valor of jugador2) {
+    jugador2 += valor + "<br>";
+  }
+  document.getElementById("historialJ1").innerHTML = jugador1;
+  document.getElementById("historialJ2").innerHTML = jugador2;
 }
