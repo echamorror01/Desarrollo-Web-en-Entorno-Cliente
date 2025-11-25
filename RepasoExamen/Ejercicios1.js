@@ -407,32 +407,37 @@ let historialTiradas = [
 
 let historialJ1 = [];
 let historialJ2 = [];
-let jugador1 = "";
-let jugador2 = "";
-
-function aleatorio(tamaño) {
-  return Math.floor(Math.random() * tamaño);
+let estadísticas = [];
+function aleatorio() {
+  let numeroaleatorio = Math.floor(Math.random() * simbolosJuego.length);
+  estadisticastirada(simbolosJuego[numeroaleatorio]);
+  return numeroaleatorio;
 }
 
 function jugar() {
-  let numero = aleatorio(simbolosJuego.length);
-  let simboloJugador1 = simbolosJuego[numero];
-  historialJ1.push(simboloJugador1);
-  let numero2 = aleatorio(simbolosJuego.length);
-  historialJ2.push(simboloJugador2);
-  let simboloJugador2 = simbolosJuego[numero2]; //sacamos el emoticono
-  document.getElementById("jugador1").innerHTML = simboloJugador1;
-  document.getElementById("jugador2").innerHTML = simboloJugador2;
+  let aleatorio1 = aleatorio();
+  let aleatorio2 = aleatorio();
+  historialJ1.push(simbolosJuego[aleatorio1]);
+  historialJ2.push(simbolosJuego[aleatorio2]);
+  document.getElementById("jugador1").innerHTML = simbolosJuego[aleatorio1];
+  document.getElementById("jugador2").innerHTML = simbolosJuego[aleatorio2];
 }
 
 function historial() {
-  for (const valor of jugador1) {
-    jugador1 += valor + "<br>";
-  }
+  document.getElementById("historialJ1").innerHTML = historialJ1.join("<br>");
+  document.getElementById("historialJ2").innerHTML = historialJ2.join("<br>");
+}
 
-  for (const valor of jugador2) {
-    jugador2 += valor + "<br>";
+function estadisticastirada(simbolo) {
+  if (estadísticas[simbolo] == undefined) {
+    estadísticas[simbolo] = 1;
+  } else {
+    estadísticas[simbolo] += 1;
   }
-  document.getElementById("historialJ1").innerHTML = jugador1;
-  document.getElementById("historialJ2").innerHTML = jugador2;
+  let rdo = "";
+  for (const indice in estadísticas) {
+    //indice es la mano
+    rdo += indice + "= " + estadísticas[indice] + "<br>";
+  }
+  document.getElementById("estadisticas").innerHTML = rdo;
 }
