@@ -195,13 +195,14 @@ function trivial(texto) {
   }
   for (let i of indices) {
     // en la i esta cada elemento del set
-    let mensaje = enunciados[i] + "\n";
+    let mensaje = enunciados[i] + "\n"; //aqui nos saca el enunciado 3 por ejemplo del random
     for (let j = 0; j < respuestas[i].length; j++) {
-      mensaje = mensaje + (j + 1) + "." + respuestas[i][j] + "\n";
+      mensaje = mensaje + (j + 1) + "." + respuestas[i][j] + "\n"; // de la respuesta 3 dame las respuestas
     }
     let respusuario = prompt(mensaje);
     //saber si es cierta
     if (Number(respusuario) == solucion[i]) {
+      //pasamos la respuesta a number
       acierto++;
     }
   }

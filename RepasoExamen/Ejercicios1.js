@@ -72,14 +72,15 @@ function div() {
   let rdo = "";
   for (let i = 0; i < div; i++) {
     //aqui tengo que abrir el div con la clase
-    rdo += "<div>";
+    rdo += "<div class='caja'>";
     for (let j = 0; j < p; j++) {
       //mostrar el parrafo con el contador
-      rdo += "<p>" + contador++ + "</p>";
+      rdo += "<p>Parrafo" + contador + "</p>";
+      contador++;
     }
     rdo += "</div>";
   }
-  document.getElementById("tabla").innerHTML = rdo;
+  document.getElementById("tabli").innerHTML = rdo;
 }
 /*Nos dan un array con los números de la ONCE de los últimos 10 días:
 “12345”,“00124”,“04586”,“98472”,“71920”,“54102”,“00013”,“29863”,“10978”,“47101”
@@ -327,7 +328,7 @@ descodificar” y finalice el programa sin descodificar el mensaje*/
 }
 let cadenaCodificaciones =
   "<table><tr><th>Mensaje</th><th>Codificacion/Decodificación</th><th>Fecha</th></tr>";
-function tabla(mensaje, resultado) {
+function tabla2(mensaje, resultado) {
   /* 7.3. Mostrar en el .html una tabla donde se van rellenando las filas con el mensaje
 codificado/descodificado, el resultado de codificar/descodificar y la fecha cuando se
 realizó la codificación/decodificación. Por ejemplo:
