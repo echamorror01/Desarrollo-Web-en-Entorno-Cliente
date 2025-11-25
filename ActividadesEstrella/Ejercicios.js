@@ -78,6 +78,81 @@ Listado productos:
 Pide al usuario “Introduce el producto a eliminar”, si no se encuentra el producto
 mostrar “Producto no encontrado”, si lo encuentra, borrar del array asociativo y
 mostrar “Producto eliminado” */
+function asociativo() {
+  const productos = [
+    "Agua-100",
+    "CocaCola-150",
+    "Snickers-200",
+    "Patatas-125",
+    "Chicles-50",
+    "Zumo-130",
+    "Sandwich-250",
+    "Café-110",
+    "Té-65",
+    "Galletas-135",
+  ];
+  let array = [];
+  let mensaje = " ";
+  let contador = 1;
+  for (const valor of productos) {
+    let partes = valor.split("-");
+    let producto = partes[0];
+    let precio = parseInt(partes[1]);
+    array[producto] = precio;
+  }
+  alert("Asociativo cargado");
+
+  for (const indice in array) {
+    // recorrer el asociativo opcional
+    mensaje += contador + indice + "," + array[indice] + "\n";
+    contador++;
+  }
+  alert(mensaje);
+
+  let eliminado = prompt("Introduce el producto a eliminar ");
+  if (array[eliminado] == undefined) {
+    alert(" El producto no se ha encontrado ");
+    return;
+  }
+  delete array[eliminado];
+  alert("Producto borrado");
+  //lo enseñamos de nuevo con el producto eliminado
+  let mensaje2 = "";
+  let conta = 1;
+  for (const indice in array) {
+    // recorrer el asociativo opcional
+    mensaje2 += conta + indice + "," + array[indice] + "\n";
+    conta++;
+  }
+  alert(mensaje2);
+}
+//OBJETOS//
+/* Vamos a simular una máquina expendedora, los productos de dicha máquina nos lo
+dan en un array de cadenas, donde está el nombre del producto, un guión y luego su
+precio: “Agua-100”. También nos dan un array de monedas posibles (no puedo insertar
+una moneda de 35 céntimos, por ejemplo), todas las monedas están en céntimos para
+facilitar la tarea.
+
+4.1 Crear una función llamada “cargarArrayProductos” que cree un array de objetos
+con los productos de la máquina usando un objeto literal, así tenemos, por ejemplo,
+que en el índice 0 del array estará el objeto con el nombre y el precio del array.
+
+4.2 Crear una función llamada “sacarProducto” que recibirá como parámetro el
+nombre del producto a sacar de la máquina y un array de monedas insertadas.
+Si no existe el producto (independientemente de mayúsculas y minúsculas) mostrará
+“Producto no encontrado”.
+
+Si alguna moneda no es correcta mostrará “Moneda X no válida”.
+Comprobar si hay suficiente dinero para comprar el producto.
+Si se introduce el importe exacto, mostrar “Producto comprado. No hay cambio”
+Si se necesita cambio, generar el cambio con el menor número de monedas posibles y
+mostrar “Producto comprado. Este es su cambio: 50 10 5”, por ejemplo.
+
+4.3 Al pulsar el botón ejercicio 5 se llamará a “cargarArrayProductos” y luego
+sacaremos los productos que deseemos llamando a sacarProducto, por ejemplo:
+sacarProducto("galletas", [200,50,10]).*/
+
+const monedasPosibles = [5, 10, 50, 100, 200];
 const productos = [
   "Agua-100",
   "CocaCola-150",
@@ -91,4 +166,21 @@ const productos = [
   "Galletas-135",
 ];
 
-let array = [];
+function cargarArrayProductos() {
+  let array = [];
+  for (const valor of productos) {
+    let partes = valor.split("-");
+    let producto = partes[0];
+    let precio = parseInt(partes[1]);
+    array.push({ nombre: producto, precio: precio });
+  }
+  let mensaje = "";
+  for (const indice of array) {
+    mensaje += indice.nombre + indice.precio + "\n";
+  }
+  alert(mensaje);
+  return array;
+}
+let lista = cargarArrayProductos();
+console.log(lista[0].nombre); // "Agua"
+console.log(lista[0].precio); // 100
