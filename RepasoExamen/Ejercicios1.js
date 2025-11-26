@@ -379,6 +379,7 @@ hacer uno aparte, si no has acabado el Ejercicio 3, para esto último, te doy un
 tiradas en el fichero codigoNecesario.txt*/
 
 let simbolosJuego = ["✂️", "🖖", "🧻", "🦎", "🪨"];
+//prettier-ignore
 let historialTiradas = [
   "✂️",
   "🧻",
@@ -407,26 +408,40 @@ let historialTiradas = [
   "🪨",
 ];
 
-let historialj1 = [];
-let historialj2 = [];
-let estadisticasjuego = [];
+let historialJ1 = [];
+let historialJ2 = [];
+let estadísticas = [];
 function aleatorio() {
-  let aleatorio = Math.floor(Math.random() * simbolosJuego.length);
-  estadisticas(simbolosJuego[aleatorio]);
-  return aleatorio;
+  let numeroaleatorio = Math.floor(Math.random() * simbolosJuego.length);
+  estadisticastirada(simbolosJuego[numeroaleatorio]);
+  return numeroaleatorio;
 }
 
 function jugar() {
   let aleatorio1 = aleatorio();
   let aleatorio2 = aleatorio();
-  historialj1.push(simbolosJuego[aleatorio1]);
-  historialj2.push(simbolosJuego[aleatorio2]);
+  historialJ1.push(simbolosJuego[aleatorio1]);
+  historialJ2.push(simbolosJuego[aleatorio2]);
   document.getElementById("jugador1").innerHTML = simbolosJuego[aleatorio1];
   document.getElementById("jugador2").innerHTML = simbolosJuego[aleatorio2];
 }
 function historial() {
-  document.getElementById("historialJ1").innerHTML = historialj1.join("<br>"); //lo convierte a array
-  document.getElementById("historialJ2").innerHTML = historialj2.join("<br>");
+  document.getElementById("historialJ1").innerHTML = historialJ1.join("<br>");
+  document.getElementById("historialJ2").innerHTML = historialJ2.join("<br>");
+}
+
+function estadisticastirada(simbolo) {
+  if (estadísticas[simbolo] == undefined) {
+    estadísticas[simbolo] = 1;
+  } else {
+    estadísticas[simbolo] += 1;
+  }
+  let rdo = "";
+  for (const indice in estadísticas) {
+    //indice es la mano
+    rdo += indice + "= " + estadísticas[indice] + "<br>";
+  }
+  document.getElementById("estadisticas").innerHTML = rdo;
 }
 
 function estadisticas(simbolo) {
