@@ -377,6 +377,7 @@ hacer uno aparte, si no has acabado el Ejercicio 3, para esto último, te doy un
 tiradas en el fichero codigoNecesario.txt*/
 
 let simbolosJuego = ["✂️", "🖖", "🧻", "🦎", "🪨"];
+//prettier-ignore
 let historialTiradas = [
   "✂️",
   "🧻",
