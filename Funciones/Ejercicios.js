@@ -231,7 +231,7 @@ simular el funcionamiento de un dado. */
 function Numeroaleatorio() {
   let numero1 = parseInt(prompt("Introduce un numero minimo "));
   let numero2 = parseInt(prompt("Introduce un numero maximo"));
-  let numero = Math.floor(Math.random() * (numero2 - numero1 + 1));
+  let numero = Math.floor(Math.random() * (numero2 - numero1 + 1)) + numero1;
   console.log(numero);
 }
 

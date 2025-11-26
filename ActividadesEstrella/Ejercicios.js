@@ -108,7 +108,7 @@ function asociativo() {
     contador++;
   }
   alert(mensaje);
-
+  // Eliminar un producto
   let eliminado = prompt("Introduce el producto a eliminar ");
   if (array[eliminado] == undefined) {
     alert(" El producto no se ha encontrado ");
@@ -125,7 +125,55 @@ function asociativo() {
     conta++;
   }
   alert(mensaje2);
+  // Modificar un producto
+  let modificar = prompt("Introduce un producto a modificar");
+  if (array[modificar] == undefined) {
+    alert("Producto no encontrado");
+  } else {
+    let nuevoproducto = prompt("Nuevo nombre del producto");
+    let nuevoprecio = parseInt(prompt("Introduce un precio"));
+    delete array[modificar];
+    array[nuevoproducto] = nuevoprecio;
+
+    alert("Producto modificado");
+    let mensj = "Listado después de modificar:\n";
+    let con = 1;
+    for (const indice in array) {
+      mensj += con + ". " + indice + ": " + array[indice] + "\n";
+      con++;
+    }
+    alert(mensj);
+  }
+  //Insertar un nuevo producto
+  let nuevoProd = prompt("Introduce el nombre del nuevo producto:");
+  if (array[nuevoProd] != undefined) {
+    alert("Ese producto ya existe");
+  } else {
+    let precioNuevo = parseInt(
+      prompt("Introduce el precio del nuevo producto:")
+    );
+    array[nuevoProd] = precioNuevo;
+    alert("Producto insertado correctamente");
+
+    // Mostrar listado tras insertar
+    let msgIns = "Listado después de insertar:\n";
+    let c2 = 1;
+    for (const indice in array) {
+      msgIns += c2 + ". " + indice + ": " + array[indice] + "\n";
+      c2++;
+    }
+    alert(msgIns);
+  }
+  // Listado FINAL
+  let final = "Listado final:\n";
+  let c = 1;
+  for (const indice in array) {
+    final += c + ". " + indice + ": " + array[indice] + "\n";
+    c++;
+  }
+  alert(final);
 }
+
 //OBJETOS//
 /* Vamos a simular una máquina expendedora, los productos de dicha máquina nos lo
 dan en un array de cadenas, donde está el nombre del producto, un guión y luego su
@@ -152,21 +200,19 @@ mostrar “Producto comprado. Este es su cambio: 50 10 5”, por ejemplo.
 sacaremos los productos que deseemos llamando a sacarProducto, por ejemplo:
 sacarProducto("galletas", [200,50,10]).*/
 
-const monedasPosibles = [5, 10, 50, 100, 200];
-const productos = [
-  "Agua-100",
-  "CocaCola-150",
-  "Snickers-200",
-  "Patatas-125",
-  "Chicles-50",
-  "Zumo-130",
-  "Sandwich-250",
-  "Café-110",
-  "Té-65",
-  "Galletas-135",
-];
-
 function cargarArrayProductos() {
+  const productos = [
+    "Agua-100",
+    "CocaCola-150",
+    "Snickers-200",
+    "Patatas-125",
+    "Chicles-50",
+    "Zumo-130",
+    "Sandwich-250",
+    "Café-110",
+    "Té-65",
+    "Galletas-135",
+  ];
   let array = [];
   for (const valor of productos) {
     let partes = valor.split("-");
@@ -181,6 +227,38 @@ function cargarArrayProductos() {
   alert(mensaje);
   return array;
 }
-let lista = cargarArrayProductos();
-console.log(lista[0].nombre); // "Agua"
-console.log(lista[0].precio); // 100
+//let lista = cargarArrayProductos();
+//console.log(lista[0].nombre); // "Agua"
+//console.log(lista[0].precio); // 100
+
+/*Parecido al de dados. Simular 36000 lanzamientos de una moneda donde cara=1 y cruz=2,cada vez 
+que tiras la moneda se registra el resultado. Al final calcular el porcentaje */
+function simularmoneda() {
+  let repeticiones = [];
+  let rdo = "";
+  let rdo2 = " ";
+  let cantidadelementos = 2 - 1 + 1;
+  for (let i = 0; i < 36000; i++) {
+    let aleatorio1 = Math.floor(Math.random() * cantidadelementos + 1);
+    if (aleatorio1 == 1) {
+      rdo = "Cara";
+    } else {
+      rdo = "Cruz";
+    }
+    if (repeticiones[rdo] == undefined) {
+      repeticiones[rdo] = 1;
+    } else {
+      repeticiones[rdo] += 1;
+    }
+  }
+  for (const indice in repeticiones) {
+    rdo2 +=
+      indice +
+      "ha salido " +
+      repeticiones[indice] +
+      "=> " +
+      ((repeticiones[indice] * 100) / 36000).toFixed(2) +
+      "\n";
+  }
+  alert(rdo2);
+}

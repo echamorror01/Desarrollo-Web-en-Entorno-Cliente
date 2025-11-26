@@ -108,8 +108,8 @@ function dado() {
   let resultado = "";
   let miarray = [];
   for (let i = 0; i < 36000; i++) {
-    let dado1 = Math.floor(Math.random() * cantidadElementos + 1); // ESTO SIEMRPE ES ASI
-    let dado2 = Math.floor(Math.random() * cantidadElementos + 1);
+    let dado1 = Math.floor(Math.random() * cantidadElementos) + 1; // ESTO SIEMRPE ES ASI
+    let dado2 = Math.floor(Math.random() * cantidadElementos) + 1;
     let suma = dado1 + dado2;
 
     if (miarray[suma] != undefined) {
@@ -126,10 +126,8 @@ function dado() {
       " - " +
       miarray[indice] +
       "=>" +
-      ((miarray[indice] * 100) / 36000).toFixed(
-        2
-      ) /* para quedarlo en dos decimales*/ +
-      "\n";
+      ((miarray[indice] * 100) / 36000).toFixed(2) +
+      "\n"; /* para quedarlo en dos decimales*/
   }
   alert(resultado);
 }

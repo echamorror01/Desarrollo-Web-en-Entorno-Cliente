@@ -5,7 +5,7 @@ descendente. Si, por ejemplo, la tabla es de 7×5 los números irán del 35 al 1
 function tabla() {
   let f = parseInt(prompt("Introduce el tamaño de las filas"));
   let c = parseInt(prompt("Introduce el tamaño de las columnas"));
-  let resultado = "<table border=1 ";
+  let resultado = "<table border=1 >";
   let contador = f * c;
   for (let filas = 1; filas <= f; filas++) {
     resultado += "<tr>";
@@ -152,11 +152,12 @@ function votos() {
     let partes = contenido.split("-");
     let ciudad = partes[0];
     let puntos = parseInt(partes[1]); //7puntos hago parseint y me quedo con el 7 tambien puedo cortar por la p
-    if (resultado[ciudad] !== undefined) {
-      //si existe
-      resultado[ciudad] += puntos;
-    } else {
+    if (resultado[ciudad] == undefined) {
+      //no existe
+
       resultado[ciudad] = puntos;
+    } else {
+      resultado[ciudad] += puntos;
     }
   }
 
@@ -406,34 +407,38 @@ let historialTiradas = [
   "🪨",
 ];
 
-let historialJ1 = [];
-let historialJ2 = [];
-let jugador1 = "";
-let jugador2 = "";
-
-function aleatorio(tamaño) {
-  return Math.floor(Math.random() * tamaño);
+let historialj1 = [];
+let historialj2 = [];
+let estadisticasjuego = [];
+function aleatorio() {
+  let aleatorio = Math.floor(Math.random() * simbolosJuego.length);
+  estadisticas(simbolosJuego[aleatorio]);
+  return aleatorio;
 }
 
 function jugar() {
-  let numero = aleatorio(simbolosJuego.length);
-  let simboloJugador1 = simbolosJuego[numero];
-  historialJ1.push(simboloJugador1);
-  let numero2 = aleatorio(simbolosJuego.length);
-  historialJ2.push(simboloJugador2);
-  let simboloJugador2 = simbolosJuego[numero2]; //sacamos el emoticono
-  document.getElementById("jugador1").innerHTML = simboloJugador1;
-  document.getElementById("jugador2").innerHTML = simboloJugador2;
+  let aleatorio1 = aleatorio();
+  let aleatorio2 = aleatorio();
+  historialj1.push(simbolosJuego[aleatorio1]);
+  historialj2.push(simbolosJuego[aleatorio2]);
+  document.getElementById("jugador1").innerHTML = simbolosJuego[aleatorio1];
+  document.getElementById("jugador2").innerHTML = simbolosJuego[aleatorio2];
 }
-
 function historial() {
-  for (const valor of jugador1) {
-    jugador1 += valor + "<br>";
-  }
-
-  for (const valor of jugador2) {
-    jugador2 += valor + "<br>";
-  }
-  document.getElementById("historialJ1").innerHTML = jugador1;
-  document.getElementById("historialJ2").innerHTML = jugador2;
+  document.getElementById("historialJ1").innerHTML = historialj1.join("<br>"); //lo convierte a array
+  document.getElementById("historialJ2").innerHTML = historialj2.join("<br>");
 }
+
+function estadisticas(simbolo) {
+  if (estadisticasjuego[simbolo] == undefined) {
+    estadisticasjuego[simbolo] = 1;
+  } else {
+    estadisticasjuego[simbolo] += 1;
+  }
+  let rdo = "";
+  for (const indice in estadisticasjuego) {
+    rdo += indice + "=" + estadisticasjuego[indice] + "<br>";
+  }
+  document.getElementById("estadisticas").innerHTML = rdo;
+}
+// cuidado con poner el nombre del array igual que la funcion que no funciona
