@@ -32,7 +32,7 @@
     "prefix": "ecrrandom",
     "body": [
       "let cantidadElementos=(max-min)+1",
-      "let aleatorio=Math.floor(Math.random() * (cantidadElementos)+ inicio)"
+      "let aleatorio=Math.floor(Math.random() * cantidadElementos)+ inicio "
     ],
     "description": "aleatorio"
   }

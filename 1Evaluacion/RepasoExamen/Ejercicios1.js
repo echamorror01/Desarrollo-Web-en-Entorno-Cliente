@@ -409,23 +409,10 @@ let historialTiradas = [
   "🪨",
 ];
 
-<<<<<<< HEAD
-let historialj1 = [];
-let historialj2 = [];
-let estadisticasjuego = [];
-function aleatorio() {
-  let aleatorio = Math.floor(Math.random() * simbolosJuego.length);
-  estadisticas(simbolosJuego[aleatorio]);
-  return aleatorio;
-=======
 let historialJ1 = [];
 let historialJ2 = [];
-let estadísticas = [];
+let estadisticasjuego = [];
 function aleatorio() {
-  let numeroaleatorio = Math.floor(Math.random() * simbolosJuego.length);
-  estadisticastirada(simbolosJuego[numeroaleatorio]);
-  return numeroaleatorio;
->>>>>>> prueba
   let numeroaleatorio = Math.floor(Math.random() * simbolosJuego.length);
   estadisticastirada(simbolosJuego[numeroaleatorio]);
   return numeroaleatorio;
@@ -434,21 +421,12 @@ function aleatorio() {
 function jugar() {
   let aleatorio1 = aleatorio();
   let aleatorio2 = aleatorio();
-<<<<<<< HEAD
-  historialj1.push(simbolosJuego[aleatorio1]);
-  historialj2.push(simbolosJuego[aleatorio2]);
-=======
   historialJ1.push(simbolosJuego[aleatorio1]);
   historialJ2.push(simbolosJuego[aleatorio2]);
->>>>>>> prueba
   document.getElementById("jugador1").innerHTML = simbolosJuego[aleatorio1];
   document.getElementById("jugador2").innerHTML = simbolosJuego[aleatorio2];
 }
 function historial() {
-<<<<<<< HEAD
-  document.getElementById("historialJ1").innerHTML = historialj1.join("<br>"); //lo convierte a array
-  document.getElementById("historialJ2").innerHTML = historialj2.join("<br>");
-=======
   document.getElementById("historialJ1").innerHTML = historialJ1.join("<br>");
   document.getElementById("historialJ2").innerHTML = historialJ2.join("<br>");
 }
@@ -465,10 +443,9 @@ function estadisticastirada(simbolo) {
     rdo += indice + "= " + estadísticas[indice] + "<br>";
   }
   document.getElementById("estadisticas").innerHTML = rdo;
->>>>>>> prueba
 }
 
-function estadisticas(simbolo) {
+function estadisticastirada(simbolo) {
   if (estadisticasjuego[simbolo] == undefined) {
     estadisticasjuego[simbolo] = 1;
   } else {
