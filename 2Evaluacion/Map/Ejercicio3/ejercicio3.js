@@ -7,6 +7,7 @@ const productos = [
 ];*/
 
 const productos = [
+  //es un array de objetos
   { id: 1, nombre: "Laptop", precio: 1200 }, //objeto con atributo id, nombre.. es un array de objetos
   { id: 2, nombre: "Teclado", precio: 50 },
   { id: 3, nombre: "Ratón", precio: 25 },
