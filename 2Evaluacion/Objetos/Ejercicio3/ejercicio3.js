@@ -4,22 +4,24 @@ pantalla. */
 class Vehiculo {
   #cilindrada; //es privado para no poder acceder a el
   constructor(cilindrada) {
-    this.cilindrada = cilindrada;
+    /*this.#atributo → acceso directo al dato privado.
+    this.atributo → llama al getter/setter. */
+    this.cilindrada = cilindrada; // aqui llama al setter
   }
 
   get cilindrada() {
-    return this.#cilindrada + "cc";
+    return this.#cilindrada + "cc"; // accede directo al atributo privado
   }
   set cilindrada(nuevo) {
     if (nuevo > 2000) {
       alert("Error");
     } else {
-      this.#cilindrada = nuevo; //esto no seria necesario
+      this.#cilindrada = nuevo; //esto no seria necesario . Asigna al atributo privado
     }
   }
   infocompleta() {
-    alert("La cilindrada de un vehiculo es " + this.cilindrada); //para acceder al get lo tenemos que poner sin #
-  }
+    alert("La cilindrada de un vehiculo es " + this.cilindrada); //para acceder al getter lo tenemos que poner sin #
+  } // aqui si le ponemos la # nos devolveria solo 1500 sin cc porque ignoraria el getter
 }
 let Vehiculo1 = new Vehiculo(25);
 Vehiculo1.infocompleta();

@@ -1,6 +1,6 @@
-/*Ejercicio 2. Array de nombres y ponerlos todos en mayúsculas.
+/* Ejercicio 2. Array de nombres y ponerlos todos en mayúsculas. 
 const nombres = ['Juan', 'Pedro', 'Luis', 'Ana', 'Maria']; */
+let nombres = ["Juan", "Pedro", "Luis", "Ana", "Maria"];
 
-const nombres = ["Juan", "Pedro", "Luis", "Ana", "Maria"];
-let mayusculas = nombres.map((nombre) => nombre.toUpperCase());
-alert(mayusculas);
+let mayúsculas = nombres.map((mayu) => mayu.toUpperCase());
+alert(mayúsculas);

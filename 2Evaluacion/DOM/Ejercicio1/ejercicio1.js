@@ -5,16 +5,17 @@ muestra cuántos hay.
 4. Selecciona TODOS los párrafos (sin importar la clase) y muestra cuántos hay.*/
 
 function ejecutar() {
-  const titulo = document.querySelector("#titulo");
-  console.log(titulo); // con .textContent me sale el contenido MiBlog
-  const parrafo = document.querySelector("p.intro"); //el primer p de la clase intro
-  console.log(parrafo);
+  const elemento = document.querySelector("#titulo");
+  console.log(elemento.textContent); //aparece el contenido
 
-  const p = document.querySelectorAll("p.intro");
-  p.forEach(function (parrafo, indice) {
-    //parrafo es el contenido y indice el indice del array
-    console.log("Intro" + (indice + 1) + ":" + parrafo.textContent);
+  const primerparrafo = document.querySelector(".intro"); //p.intro
+  console.log(primerparrafo.textContent);
+
+  const parrafosintro = document.querySelectorAll("p.intro");
+  parrafosintro.forEach(function (parrafo, indice) {
+    console.log("Intro" + (indice + 1) + parrafo.textContent);
   });
+
   const todosparrafos = document.querySelectorAll("p");
   console.log(todosparrafos.length);
 }
