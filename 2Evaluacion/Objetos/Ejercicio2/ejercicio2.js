@@ -8,6 +8,7 @@ class Libro {
   #titulo;
   #ubicacion;
   constructor(autor = " ", titulo = " ", ubicacion = " ") {
+    // valor por defecto
     this.autor = autor; //aqui quitamos las # porque hacemos getter y setter
     this.titulo = titulo;
     this.ubicacion = ubicacion;
@@ -39,3 +40,6 @@ libro1.autor = "Autor";
 libro1.titulo = "Camino";
 libro1.ubicacion = "Zafra";
 alert(libro1.autor + libro1.titulo + libro1.ubicacion);
+
+/* this.#atributo = valor	Asigna directo al atributo privado	No quieres que se ejecute la lógica del setter
+this.atributo = valor	Llama al setter	Quieres que se aplique la validación o lógica del setter*/

@@ -73,3 +73,9 @@ function mostrarinformacion(corredores) {
   }
   document.getElementById("resultado").innerHTML = rdo;
 }
+
+/* Regla simple sobre la almohadilla #
+
+Pon # cuando quieres acceder directamente al atributo privado, es decir, al dato crudo, sin pasar por ningún getter o setter.
+
+No pongas # cuando quieres acceder al valor a través del getter, que puede hacer transformaciones, validaciones o añadir información extra.*/
