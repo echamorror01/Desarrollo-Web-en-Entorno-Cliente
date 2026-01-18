@@ -15,5 +15,18 @@ function ejecutar() {
     console.log(product.dataset.id);
     console.log(product.dataset.precio);
     console.log(product.dataset.stock);
+    if (parseInt(product.dataset.stock) == 0) {
+      // hay que parsearlo porque dataset nos devuelve string
+      product.classList.add("sin-stock");
+      const disponible = (product.dataset.disponible = "false");
+      console.log(disponible);
+      const agotado = (product.dataset.stock = "AGOTADO");
+      console.log(agotado);
+    }
+    if (parseInt(product.dataset.precio) < 500) {
+      product.classList.add("oferta");
+      const oferta = (product.dataset.oferta = "true");
+      console.log(oferta);
+    }
   });
 }

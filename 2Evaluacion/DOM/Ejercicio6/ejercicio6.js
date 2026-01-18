@@ -5,15 +5,18 @@ reas:
 3. Inserta todo en el div usando innerHTML.
 4. Muestra un alert que diga “Lista creada con X ciudades”
 */
-const resultado = "";
-const ciudades = ["Madrid", "Barcelona", "Valencia", "Sevilla"];
-const contenedor = document.querySelector("#contenedor-lista");
-resultado += "<h2>Ciudades de España</h2>";
+function ejecutar() {
+  let resultado = "";
+  const ciudades = ["Madrid", "Barcelona", "Valencia", "Sevilla"];
+  const contenedor = document.querySelector("#contenedor-lista");
+  resultado += "<h2>Ciudades de España</h2>";
 
-resultado += "<ul>";
-ciudades.forEach(function (ciudad, indice) {
-  resultado += "<li>" + ciudad + "</li>";
-});
-resultado += "</ul>";
-contenedor.innerHTML = resultado;
-alert("Lista creada con " + ciudad.length + "ciudades");
+  resultado += "<ul>";
+  ciudades.forEach(function (ciudad) {
+    // ciudad elemento del array
+    resultado += "<li>" + ciudad + "</li>";
+  });
+  resultado += "</ul>";
+  contenedor.innerHTML = resultado;
+  alert("Lista creada con " + ciudades.length + " ciudades"); //ciudades del array para ver el numero
+}
