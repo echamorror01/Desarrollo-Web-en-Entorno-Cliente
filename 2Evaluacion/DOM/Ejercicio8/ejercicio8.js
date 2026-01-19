@@ -20,7 +20,7 @@ function ejecutar() {
       product.classList.add("sin-stock");
       const disponible = (product.dataset.disponible = "false");
       console.log(disponible);
-      const agotado = (product.dataset.stock = "AGOTADO");
+      product.querySelector(".stock").textContent = "AGOTADO";
       console.log(agotado);
     }
     if (parseInt(product.dataset.precio) < 500) {
