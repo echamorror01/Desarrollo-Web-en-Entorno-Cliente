@@ -10,14 +10,14 @@ Oferta 1: X…
 
 function ejecutar() {
   const h2 = document.querySelector("#contenedor h2");
-  console.log(h2);
+  console.log(h2.textContent);
 
   const oferta = document.querySelectorAll(".oferta");
   oferta.forEach(function (li, indice) {
     console.log("Oferta" + (indice + 1) + li.textContent);
   });
 
-  const li = document.querySelectorAll("#contenedor li ");
+  const li = document.querySelectorAll("#contenedor li "); // si pongo li solo tambien funciona
   console.log(li.length);
 
   console.log(oferta.length);

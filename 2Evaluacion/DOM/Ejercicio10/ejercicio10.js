@@ -9,8 +9,16 @@ van quedando las clases en cada tarjeta.
 
 function ejecutar() {
   const tarjeta = document.querySelectorAll(".tarjeta");
-  tarjeta[0] = tarjeta.forEach(function (tarj, indice) {
+  console.log("Numero de tarjetas " + tarjeta.length);
+
+  tarjeta.forEach(function (tarj, indice) {
+    if (indice == 0) {
+      tarj.classList.add(" activa");
+    }
     tarj.classList.add("grande");
-    console.log(tarj.className);
+    console.log("Tarjeta " + (indice + 1) + tarj.className);
   });
+  console.log(
+    "La primera tarjeta tiene " + tarjeta[0].classList.length + "clases",
+  );
 }
