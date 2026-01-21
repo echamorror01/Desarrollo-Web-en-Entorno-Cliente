@@ -14,4 +14,11 @@ const tareasIniciales = [
 
 tareasIniciales.forEach(function (elementos, indice) {});
 
-function crearElementoLista() {}
+function crearElementoLista(texto) {
+  const li = document.createElement("li");
+  const span = document.createElement("span");
+  span.textContent = texto;
+
+  li.appendChild(span);
+  return li;
+}
