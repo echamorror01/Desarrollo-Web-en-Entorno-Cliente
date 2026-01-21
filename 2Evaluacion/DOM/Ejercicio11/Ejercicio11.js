@@ -11,14 +11,26 @@ const tareasIniciales = [
   "Practicar DOM",
   "Hacer ejercicios",
 ];
-
-tareasIniciales.forEach(function (elementos, indice) {});
+const lista = document.querySelector("#lista");
+tareasIniciales.forEach(function (elementos, indice) {
+  const li = crearElementoLista(elementos);
+  lista.appendChild(li);
+});
 
 function crearElementoLista(texto) {
   const li = document.createElement("li");
   const span = document.createElement("span");
-  span.textContent = texto;
+  span.textContent = texto; //añadimos el texto
+  li.appendChild(span); //metemos el span dentro del li
+  const boton = document.createElement("button");
+  boton.textContent = "Eliminar";
+  boton.classList.add("btn-eliminar");
+  // Evento para eliminar la tarea
+  boton.addEventListener("click", function () {
+    li.remove(); // esto siempre es asi, cuando pulsamos en eliminar, eliminamos el li
+  });
 
-  li.appendChild(span);
-  return li;
+  li.appendChild(boton); //metemos el boton dentro del li
+
+  return li; //li completo
 }
