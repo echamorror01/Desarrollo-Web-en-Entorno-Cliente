@@ -31,6 +31,6 @@ function crearElementoLista(texto) {
   });
 
   li.appendChild(boton); //metemos el boton dentro del li
-
+  // con li.append(span,boton) podriamos meter los dos a la vez
   return li; //li completo
 }
