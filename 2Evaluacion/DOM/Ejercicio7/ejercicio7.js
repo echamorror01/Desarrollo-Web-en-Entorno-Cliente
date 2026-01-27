@@ -17,6 +17,7 @@ function ejecutar() {
     alert(product.dataset.nombre);
     alert(product.dataset.precio);
     alert(product.dataset.stock);
+    
 
     if (indice == 0) {
       //const primerproducto= product[0]

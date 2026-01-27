@@ -17,3 +17,5 @@ function ejecutar() {
   caja.classList.remove("contenedor");
   console.log(caja.classList.length);
 }
+
+

@@ -14,7 +14,7 @@ const tareasIniciales = [
 const lista = document.querySelector("#lista");
 tareasIniciales.forEach(function (elementos, indice) {
   const li = crearElementoLista(elementos);
-  lista.appendChild(li);
+  lista.appendChild(li);2
 });
 
 function crearElementoLista(texto) {
