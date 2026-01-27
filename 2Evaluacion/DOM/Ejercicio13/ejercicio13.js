@@ -31,11 +31,23 @@ function cargarTareasiniciales() {
 }
 
 botonagregar.addEventListener("click", () => {
-  //agregar un  nuevo li tiene que estar fuera  porque cada click crea una nueva tarea
-  lista.appendChild(crearElementoLista("Tarea" + contador));
+  //agregar un nuevo li
+  const nuevaTarea = crearElementoLista("Tarea" + contador);
+  lista.appendChild(nuevaTarea);
   contador++;
 });
 
+lista.addEventListener("click", (e) => {
+  if (e.target.classList.contains("btn-eliminar")) {
+    const li = e.target.parentElement; //el padre
+    const texto = li.querySelector(".texto").textContent; //queryselector para cuando esta dentro de un elemento
+    li.remove();
+    console.log("Tarea Eliminada " + texto);
+  }
+  if (e.target.classList.contains("texto")) {
+    e.target.classList.toggle("completada");
+  }
+});
 function crearElementoLista(texto) {
   const li = document.createElement("li");
   const span = document.createElement("span");
@@ -47,23 +59,7 @@ function crearElementoLista(texto) {
   boton.textContent = "X";
   li.appendChild(boton);
 
-  boton.addEventListener("click", () => {
-    //eliminar un li , estos dos si pueden estar dentro porque cada li tiene estos eventos
-    console.log("Tarea eliminada " + span.textContent);
-    li.remove();
-  });
-
-  span.addEventListener("click", () => {
-    span.classList.toggle("completada");
-    if (span.classList.contains("completada")) {
-      console.log("tarea marcada como completada");
-    } else {
-      console.log("tarea mascada como pendiente");
-    }
-  });
-
   return li;
 }
 
-/* Eventos del botón que siempre está en la página- fuera de la función de creación
-Eventos del contenido que se crea dinámicamente- dentro de la funcion de la creación*/
+/* Eventos del botón que siempre fuera*/
