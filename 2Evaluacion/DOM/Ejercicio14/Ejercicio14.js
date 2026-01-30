@@ -8,33 +8,36 @@ o Ocultar productos que no cumplan los filtros añadiendo clase "oculto".
 3. Si no hay productos que mostrar, mostrar mensaje "No hay productos"
 */
 
-const aplicar = document.querySelector("aplicar-filtros");
-
+const select = document.querySelector("#categoria");
+const aplicar = document.querySelector("#aplicar-filtros");
+const productos = document.querySelectorAll(".producto");
 aplicar.addEventListener("click", () => {
-  const select = document.querySelector("#categoria");
   const indice = select.selectedIndex;
-  const opcionseleccionada = select.options[indice];
-  console.log("Texto " + opcionseleccionada.text);
-  console.log("Valor " + opcionseleccionada.value);
-  let visible = 0;
-  //checbox
-  const marcados = document.querySelector("#solo-disponible:checked"); // para ver si esta marcado
-  const productos = document.querySelectorAll(".producto");
+  const opcionseleccionada = select.options[indice].value;
+  let contadorProductos = 0;
+  //checkbox
+  const marcados = document.querySelector("#solo-disponibles:checked"); // para ver si esta marcado devuelve true o false
 
   productos.forEach(function (produc, indice) {
-    if (opcionseleccionada.value != produc.dataset.categoria) {
+    if (
+      opcionseleccionada != produc.dataset.categoria &&
+      opcionseleccionada != ""
+    ) {
       produc.classList.add("oculto");
-      return;
+    } else {
+      produc.classList.remove("oculto");
     }
 
-    if (marcados && parseInt(produc.dataset.stock) <= 0) {
+    if (marcados && produc.dataset.stock == 0) {
       produc.classList.add("oculto");
-      return;
     }
-    visible++;
-    console.log("Productos visibles" + visible);
-    if (visible == 0) {
-      console.log("No hay productos");
+    if (!produc.classList.contains("oculto")) {
+      contadorProductos++;
     }
   });
+  if (contadorProductos > 0) {
+    console.log("Productos seleccionados: " + contadorProductos);
+  } else {
+    console.log("No hay productos");
+  }
 });

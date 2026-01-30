@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="ejercicio15.css" />
+    <script defer src="ejercicio15.js"></script>
+  </head>
+  <body>
+    <h1>Catálogo de Productos</h1>
+    <!-- Template de tarjeta -->
+    <template id="template-producto">
+      <div class="tarjeta">
+        <h3 class="nombre"></h3>
+        <p class="descripcion"></p>
+        <div class="precio"></div>
+        <p class="stock"></p>
+        <button class="btn-comprar">Añadir al carrito</button>
+      </div>
+    </template>
+    <!-- Contenedor de productos -->
+    <div class="productos" id="contenedor-productos"></div>
+  </body>
+</html>
