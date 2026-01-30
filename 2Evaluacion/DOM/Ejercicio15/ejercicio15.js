@@ -36,7 +36,13 @@ const contenedor = document.querySelector("#contenedor-productos");
 productos.forEach(function (produc, indice) {
   contenedor.appendChild(crearTarjetaProducto(produc));
 });
-contenedor.addEventListener("click", (e) => {});
+contenedor.addEventListener("click", (e) => {
+  if (e.target.classList.contains("btn-comprar")) {
+    //target para hacer referencia
+    const padre = e.target.parentElement.querySelector(".nombre");
+    alert("Producto añadido al carrito " + padre.textContent);
+  }
+});
 
 boton.addEventListener("click", (e) => {});
 function crearTarjetaProducto(producto) {
