@@ -17,8 +17,50 @@ let listalimpia = arrayProductos.map((item) => {
   return {
     id: parseInt(id),
     nombre: nombre,
-    precio: precio,
+    precio: parseFloat(precio),
     descripcion: descripcion,
     imagen: imagen,
   };
 });
+
+const grid = document.querySelector("#productGrid");
+const template = document.querySelector("#plantillaTarjeta");
+let carrito = []; // un carrito siempre es un array donde se van a irr guardando los prodcutos
+
+listalimpia.forEach(function (produc, indice) {
+  grid.appendChild(dibujar(produc));
+});
+
+function dibujar(producto) {
+  const clon = template.content.cloneNode(true);
+  const nombre = clon.querySelector(".product-title"); //cuidado con los nombres mirar bien el html
+  nombre.textContent = producto.nombre;
+  const precio = clon.querySelector(".product-price");
+  precio.textContent = producto.precio;
+  const descripcion = clon.querySelector(".product-desc");
+  descripcion.textContent = producto.descripcion;
+  const imagen = clon.querySelector(".product-image");
+  imagen.src = producto.imagen; // la imagen se tiene que poner asi
+
+  const claseboton = clon.querySelector(".add-btn");
+  claseboton.dataset.id = producto.id;
+
+  claseboton.addEventListener("click", () => {
+    añadircarrito(producto);
+  });
+
+  return clon;
+}
+
+function añadircarrito(producto) {
+  let cantidad = 0;
+  //Lo primero que tenemos que hacer es si en mi carrito existe el producto
+  const existe = carrito.find(function (carro) {
+    return carro.id == producto.id;
+  });
+  if (!existe) {
+    carrito.push(producto);
+  } else {
+    cantidad++;
+  }
+}
