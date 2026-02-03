@@ -45,6 +45,7 @@ contenedor.addEventListener("click", (e) => {
 });
 
 boton.addEventListener("click", (e) => {});
+
 function crearTarjetaProducto(producto) {
   const clon = template.content.cloneNode(true);
   const nombre = clon.querySelector(".nombre");
@@ -65,4 +66,3 @@ function crearTarjetaProducto(producto) {
 
   return clon;
 }
-contenedor.addEventListener("click", (e) => {});

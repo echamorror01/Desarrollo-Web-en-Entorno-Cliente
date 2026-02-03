@@ -13,7 +13,7 @@ const aplicar = document.querySelector("#aplicar-filtros");
 const productos = document.querySelectorAll(".producto");
 aplicar.addEventListener("click", () => {
   const indice = select.selectedIndex;
-  const opcionseleccionada = select.options[indice].value;
+  const opcionseleccionada = select.options[indice].value; // o text para ver lo de dentro
   let contadorProductos = 0;
   //checkbox
   const marcados = document.querySelector("#solo-disponibles:checked"); // para ver si esta marcado devuelve true o false

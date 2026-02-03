@@ -24,6 +24,11 @@ const lista = document.querySelector("#lista-tareas");
 const botonagregar = document.querySelector("#btn-agregar");
 let contador = 1;
 
+//cargar tareas iniciales al cargar el HTML
+document.addEventListener("DOMContentLoaded", () => {
+  cargarTareasiniciales();
+});
+
 function cargarTareasiniciales() {
   lista.appendChild(crearElementoLista("Estudiar Javascript"));
   lista.appendChild(crearElementoLista("Practicar DOM"));
@@ -45,7 +50,14 @@ lista.addEventListener("click", (e) => {
     console.log("Tarea Eliminada " + texto);
   }
   if (e.target.classList.contains("texto")) {
-    e.target.classList.toggle("completada");
+    const completada = e.target.classList.toggle("completada");
+    const texto = e.target.textContent;
+    console.log(
+      "Tarea " +
+        texto +
+        "marcada como " +
+        (completada ? "completada" : pendiente),
+    );
   }
 });
 function crearElementoLista(texto) {
