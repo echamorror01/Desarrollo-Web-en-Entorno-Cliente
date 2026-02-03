@@ -53,14 +53,21 @@ function dibujar(producto) {
 }
 
 function añadircarrito(producto) {
-  let cantidad = 0;
+  let prod = {
+    id: parseInt(producto.id),
+    nombre: producto.nombre,
+    precio: parseFloat(producto.precio),
+    descripcion: producto.descripcion,
+    imagen: producto.imagen,
+    cantidad: 1,
+  };
+
   //Lo primero que tenemos que hacer es si en mi carrito existe el producto
   const existe = carrito.find(function (carro) {
-    return carro.id == producto.id;
+    return carro.id == prod.id;
   });
-  if (!existe) {
-    carrito.push(producto);
-  } else {
-    cantidad++;
+  if (existe != undefined) {
+    prod.cantidad += 1; //si existe lo incrementamos
   }
+  carrito.push(prod);
 }
