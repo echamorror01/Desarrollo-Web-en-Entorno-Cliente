@@ -25,12 +25,48 @@ let listalimpia = arrayProductos.map((item) => {
 
 const grid = document.querySelector("#productGrid");
 const template = document.querySelector("#plantillaTarjeta");
-let carrito = []; // un carrito siempre es un array donde se van a irr guardando los prodcutos
+// un carrito siempre es un array donde se van a irr guardando los prodcutos
+const templatecarritos = document.querySelector("#elementoCarrito");
+const cartBarge = document.querySelector("#cartBadge");
+const sidebar = document.querySelector("#sidebar");
+const iconocarrito = document.querySelector("#iconoCarrito");
+const cerrar = document.querySelector("#closeCart");
+const cartItems = document.querySelector("#cartItems");
+const total = document.querySelector("#totalValue");
+const clean = document.querySelector("#clearCart");
+const comprar = document.querySelector("#comprarCarrito");
 
+let carrito = [];
 listalimpia.forEach(function (produc, indice) {
   grid.appendChild(dibujar(produc));
 });
 
+//Abrir y cerrar carrito
+iconocarrito.addEventListener("click", () => {
+  sidebar.classList.add("active");
+});
+cerrar.addEventListener("click", () => {
+  sidebar.classList.remove("active");
+});
+//Vaciar cesta
+
+//Comprar
+comprar.addEventListener("click", () => {
+  if (carrito.length == 0) {
+    alert("El carrito está vacío");
+    return;
+  }
+  let mensaje = "Productos Comprados : \n";
+
+  carrito.forEach(function (comprar, indice) {
+    mensaje +=
+      comprar.nombre +
+      "Cantidad" +
+      comprar.cantidad +
+      "Precio" +
+      comprar.precio;
+  });
+});
 function dibujar(producto) {
   const clon = template.content.cloneNode(true);
   const nombre = clon.querySelector(".product-title"); //cuidado con los nombres mirar bien el html
@@ -53,21 +89,61 @@ function dibujar(producto) {
 }
 
 function añadircarrito(producto) {
-  let prod = {
-    id: parseInt(producto.id),
-    nombre: producto.nombre,
-    precio: parseFloat(producto.precio),
-    descripcion: producto.descripcion,
-    imagen: producto.imagen,
-    cantidad: 1,
-  };
-
   //Lo primero que tenemos que hacer es si en mi carrito existe el producto
   const existe = carrito.find(function (carro) {
-    return carro.id == prod.id;
+    return carro.id == producto.id;
   });
-  if (existe != undefined) {
-    prod.cantidad += 1; //si existe lo incrementamos
+  if (existe) {
+    existe.cantidad++; //si existe lo incrementamos
+  } else {
+    carrito.push({
+      id: producto.id,
+      nombre: producto.nombre,
+      precio: producto.precio,
+      descripcion: producto.descripcion,
+      imagen: producto.imagen,
+      cantidad: 1,
+    });
   }
-  carrito.push(prod);
+
+  actualizarCarrito();
 }
+
+function actualizarCarrito() {
+  carrito.forEach(function (elementos, indice) {
+    const clon = templatecarritos.content.cloneNode(true);
+    const imagen = clon.querySelector(".cart-item-img");
+    imagen.src = elementos.imagen;
+    imagen.alt = elementos.nombre;
+
+    const nombre = clon.querySelector(".cart-item-title");
+    nombre.textContent = elementos.nombre + "x" + elementos.cantidad;
+    const precio = clon.querySelector(".cart-item-price");
+    precio.textContent = elementos.precio * elementos.cantidad + "€";
+
+    const eliminar = clon.querySelector(".remove-btn");
+    eliminar.addEventListener("click", () => {
+      eliminardelcarrito(elementos.id);
+    });
+    cartItems.appendChild(clon);
+  });
+  actualizarBadge();
+}
+
+function eliminardelcarrito(id) {
+  carrito = carrito.filter(function (eliminar) {
+    return eliminar.id !== id; // devuelve true o false si es igual lo elimina
+  });
+  añadirhtml();
+  actualizarBadge();
+}
+function actualizarBadge() {
+  let total = 0;
+  carrito.forEach(function (elemcarrito, indice) {
+    //recorremos el array de carritos para saber la cantidad
+    total = total + elemcarrito.cantidad;
+  });
+  cartBarge.textContent = total; // lo mostramos en el badge
+}
+
+function actualizarTotal() {}
