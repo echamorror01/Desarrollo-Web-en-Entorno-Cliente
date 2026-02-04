@@ -110,6 +110,7 @@ function añadircarrito(producto) {
 }
 
 function actualizarCarrito() {
+  cartItems.textContent = ""; //tenemos que vaciar primero el carrito
   carrito.forEach(function (elementos, indice) {
     const clon = templatecarritos.content.cloneNode(true);
     const imagen = clon.querySelector(".cart-item-img");
@@ -134,7 +135,8 @@ function eliminardelcarrito(id) {
   carrito = carrito.filter(function (eliminar) {
     return eliminar.id !== id; // devuelve true o false si es igual lo elimina
   });
-  añadirhtml();
+
+  actualizarCarrito();
   actualizarBadge();
 }
 function actualizarBadge() {
