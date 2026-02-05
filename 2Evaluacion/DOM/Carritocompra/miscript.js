@@ -37,6 +37,7 @@ const clean = document.querySelector("#clearCart");
 const comprar = document.querySelector("#comprarCarrito");
 
 let carrito = [];
+
 listalimpia.forEach(function (produc, indice) {
   grid.appendChild(dibujar(produc));
 });
@@ -49,13 +50,19 @@ cerrar.addEventListener("click", () => {
   sidebar.classList.remove("active");
 });
 //Vaciar cesta
-
+clean.addEventListener("click", () => {
+  carrito = [];
+  actualizarCarrito();
+  actualizarBadge();
+  total.textContent = "0€";
+});
 //Comprar
 comprar.addEventListener("click", () => {
   if (carrito.length == 0) {
     alert("El carrito está vacío");
     return;
   }
+
   let mensaje = "Productos Comprados : \n";
 
   carrito.forEach(function (comprar, indice) {
@@ -66,13 +73,15 @@ comprar.addEventListener("click", () => {
       "Precio" +
       comprar.precio;
   });
+  alert(mensaje);
 });
 function dibujar(producto) {
+  // rellenamos los productos
   const clon = template.content.cloneNode(true);
   const nombre = clon.querySelector(".product-title"); //cuidado con los nombres mirar bien el html
   nombre.textContent = producto.nombre;
   const precio = clon.querySelector(".product-price");
-  precio.textContent = producto.precio;
+  precio.textContent = producto.precio + "€";
   const descripcion = clon.querySelector(".product-desc");
   descripcion.textContent = producto.descripcion;
   const imagen = clon.querySelector(".product-image");
@@ -82,6 +91,7 @@ function dibujar(producto) {
   claseboton.dataset.id = producto.id;
 
   claseboton.addEventListener("click", () => {
+    //añadimos el producto al carrito cuando pulsamos añadirproducto
     añadircarrito(producto);
   });
 
@@ -110,7 +120,9 @@ function añadircarrito(producto) {
 }
 
 function actualizarCarrito() {
+  // actualizamos el carrito visualmente
   cartItems.textContent = ""; //tenemos que vaciar primero el carrito
+
   carrito.forEach(function (elementos, indice) {
     const clon = templatecarritos.content.cloneNode(true);
     const imagen = clon.querySelector(".cart-item-img");
@@ -129,17 +141,19 @@ function actualizarCarrito() {
     cartItems.appendChild(clon);
   });
   actualizarBadge();
+  actualizarTotal();
 }
 
 function eliminardelcarrito(id) {
   carrito = carrito.filter(function (eliminar) {
-    return eliminar.id !== id; // devuelve true o false si es igual lo elimina
-  });
+    return eliminar.id !== id; // deja solo el id que es distinto si hay 1 igual lo borra
+  }); // true se queda el id, false lo borra
 
   actualizarCarrito();
   actualizarBadge();
 }
 function actualizarBadge() {
+  //simbolo del carrito
   let total = 0;
   carrito.forEach(function (elemcarrito, indice) {
     //recorremos el array de carritos para saber la cantidad
@@ -148,4 +162,10 @@ function actualizarBadge() {
   cartBarge.textContent = total; // lo mostramos en el badge
 }
 
-function actualizarTotal() {}
+function actualizarTotal() {
+  let suma = 0;
+  carrito.forEach(function (pro, indice) {
+    suma += pro.precio * pro.cantidad;
+  });
+  total.textContent = suma.toFixed(2) + "€";
+}
