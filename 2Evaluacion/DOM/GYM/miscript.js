@@ -28,15 +28,63 @@ let listalimpia = arrayDatos.map((item) => {
 
 const template = document.querySelector("#templateEjercicio");
 const grid = document.querySelector(".ejercicios");
+const tablasdias = document.querySelector("#listadoEjercicios");
+const div = document.querySelector(".añadirEjercicio");
+const span = div.querySelector("span"); // este es el primero q encuentra si hubiera mas (div.querySelecto(".nombreEjercicio").querySelector("span"))
+const btnañadir = document.querySelector(".btnAñadir");
+const series = document.querySelector(".seriesEjercicio");
+const repeticiones = document.querySelector(".repeticionesEjercicio");
+const peso = document.querySelector(".pesoEjercicio");
+const dias = document.querySelector(".selectorDia");
+const templatetabla = document.querySelector("#templateTablaEjercicio");
+const templatefilaejercicio = document.querySelector("#templateFilaEjercicio");
 
 listalimpia.forEach(function (ejer, indice) {
   grid.appendChild(dibujar(ejer));
 });
 
+//Listener
+grid.addEventListener("click", (e) => {
+  if (e.target.classList.contains("img-fluid")) {
+    span.textContent = e.target.alt;
+    grid.forEach(function (elemento) {});
+    grid.classList.remove("bg-body-secondary");
+    grid.classList.add("bordeColor");
+  }
+});
+
+btnañadir.addEventListener("click", () => {
+  const nombre = span.textContent;
+  const series = series.value; //porque son inputs
+  const repeticiones = repeticiones.value;
+  const peso = peso.value;
+  const dias = dias.value;
+});
+
 function dibujar(ejercicio) {
   const clon = template.content.cloneNode(true);
-  let imagen = clon.querySelector(".img-fluid");
+  const imagen = clon.querySelector(".img-fluid"); //cuidado con el nombre
   imagen.src = ejercicio.imagenes; //cuidado con la imagen que es src
-  l;
+  imagen.alt = ejercicio.ejercicio;
+  return clon;
+}
+
+function obtenertablaejercicio(dia) {
+  //devolvemos el div de la fila con el dia
+  const clon = templatetabla.content.cloneNode(true);
+  const h2 = clon.querySelector("h2");
+  h2.textContent = dia;
+  const fila = cloneElement.querySelector(".fila");
+  fila.dataset.dia = dia;
+  return dia;
+}
+
+function obtenerfila(nombre, series, repeticiones, peso, imagen) {
+  const clon = templatefilaejercicio.content.cloneNode(true);
+  clon.querySelector(".nombreEj").textContent = nombre;
+  clon.querySelector(".series").textContent = series;
+  clon.querySelector(".repeticiones").textContent = repeticiones;
+  clon.querySelector(".peso").textContent = peso;
+  clon.querySelector(".imgEjercicios").src = imagen;
   return clon;
 }
