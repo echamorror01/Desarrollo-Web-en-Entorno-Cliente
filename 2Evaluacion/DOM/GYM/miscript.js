@@ -30,7 +30,7 @@ const template = document.querySelector("#templateEjercicio");
 const grid = document.querySelector(".ejercicios");
 const tablasdias = document.querySelector("#listadoEjercicios");
 const div = document.querySelector(".añadirEjercicio");
-const span = div.querySelector("span"); // este es el primero q encuentra si hubiera mas (div.querySelecto(".nombreEjercicio").querySelector("span"))
+const span = div.querySelector(".nombreEjercicio span"); // este es el primero q encuentra si hubiera mas (div.querySelecto(".nombreEjercicio").querySelector("span"))
 const btnañadir = div.querySelector(".btnAñadir");
 const series = div.querySelector(".seriesEjercicio");
 const repeticiones = div.querySelector(".repeticionesEjercicio");
@@ -38,6 +38,7 @@ const peso = div.querySelector(".pesoEjercicio");
 const dias = div.querySelector(".selectorDia");
 const templatetabla = document.querySelector("#templateTablaEjercicio");
 const templatefilaejercicio = document.querySelector("#templateFilaEjercicio");
+let imagenSeleccionada = "";
 
 listalimpia.forEach(function (ejer, indice) {
   grid.appendChild(dibujar(ejer));
@@ -53,34 +54,46 @@ grid.addEventListener("click", (e) => {
     });
     e.target.parentElement.classList.add("bordeColor"); //se lo agregamos al padre
     e.target.parentElement.classList.remove("bg-body-secondary");
+    imagenSeleccionada = e.target.src;
   }
 });
 
 btnañadir.addEventListener("click", () => {
-  const nombre = span.textContent;
-  const series = series.value; //porque son inputs
-  const repeticiones = repeticiones.value;
-  const peso = peso.value;
-  const dias = dias.value;
+  if (span.textContent == "") {
+    alert("Debes seleccionar un ejercicio");
+    return;
+  }
+  if (series.value == "" || repeticiones.value == "" || peso.value == "") {
+    alert("Debes seleccionar una serie, una repeticion o un peso");
+    return;
+  }
+  let nombre = span.textContent;
+  let clon = obtenerfila(
+    nombre,
+    series.value,
+    repeticiones.value,
+    peso.value,
+    imagenSeleccionada,
+  );
+
+  const numfilas = document.querySelector("[data-dia=" + dias.value + "]");
+  if (numfilas == null) {
+    const clon2 = obtenertablaejercicio(dias.value); //cabecera
+    clon2.appendChild(clon);
+    tablasdias.appendChild(clon2);
+  } else {
+    numfilas.appendChild(clon);
+  }
+
+  //tablasdias.appendChild(clon);
 });
 
 function dibujar(ejercicio) {
   const clon = template.content.cloneNode(true);
   const imagen = clon.querySelector(".img-fluid"); //cuidado con el nombre
   imagen.src = ejercicio.imagenes; //cuidado con la imagen que es src
-<<<<<<< HEAD
   imagen.alt = ejercicio.ejercicio;
   return clon;
-}
-
-function obtenertablaejercicio(dia) {
-  //devolvemos el div de la fila con el dia
-  const clon = templatetabla.content.cloneNode(true);
-  const h2 = clon.querySelector("h2");
-  h2.textContent = dia;
-  const fila = cloneElement.querySelector(".fila");
-  fila.dataset.dia = dia;
-  return dia;
 }
 
 function obtenerfila(nombre, series, repeticiones, peso, imagen) {
@@ -90,8 +103,16 @@ function obtenerfila(nombre, series, repeticiones, peso, imagen) {
   clon.querySelector(".repeticiones").textContent = repeticiones;
   clon.querySelector(".peso").textContent = peso;
   clon.querySelector(".imgEjercicios").src = imagen;
-=======
-  
->>>>>>> 7456881 (guardo cambios locales)
+
+  return clon;
+}
+
+function obtenertablaejercicio(dia) {
+  //devolvemos el div de la fila con el dia
+  const clon = templatetabla.content.cloneNode(true);
+  const h2 = clon.querySelector("h2");
+  h2.textContent = dia;
+  const fila = clon.querySelector(".fila");
+  fila.dataset.dia = dia;
   return clon;
 }
