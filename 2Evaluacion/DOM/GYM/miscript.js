@@ -31,11 +31,11 @@ const grid = document.querySelector(".ejercicios");
 const tablasdias = document.querySelector("#listadoEjercicios");
 const div = document.querySelector(".añadirEjercicio");
 const span = div.querySelector("span"); // este es el primero q encuentra si hubiera mas (div.querySelecto(".nombreEjercicio").querySelector("span"))
-const btnañadir = document.querySelector(".btnAñadir");
-const series = document.querySelector(".seriesEjercicio");
-const repeticiones = document.querySelector(".repeticionesEjercicio");
-const peso = document.querySelector(".pesoEjercicio");
-const dias = document.querySelector(".selectorDia");
+const btnañadir = div.querySelector(".btnAñadir");
+const series = div.querySelector(".seriesEjercicio");
+const repeticiones = div.querySelector(".repeticionesEjercicio");
+const peso = div.querySelector(".pesoEjercicio");
+const dias = div.querySelector(".selectorDia");
 const templatetabla = document.querySelector("#templateTablaEjercicio");
 const templatefilaejercicio = document.querySelector("#templateFilaEjercicio");
 
@@ -47,9 +47,12 @@ listalimpia.forEach(function (ejer, indice) {
 grid.addEventListener("click", (e) => {
   if (e.target.classList.contains("img-fluid")) {
     span.textContent = e.target.alt;
-    grid.forEach(function (elemento) {});
-    grid.classList.remove("bg-body-secondary");
-    grid.classList.add("bordeColor");
+    //seleccionamos todos los elementos dentro de grid que tienen la clase ejercicio
+    grid.querySelectorAll(".ejercicio").forEach(function (elemento, indice) {
+      elemento.classList.remove("bordeColor");
+    });
+    e.target.parentElement.classList.add("bordeColor"); //se lo agregamos al padre
+    e.target.parentElement.classList.remove("bg-body-secondary");
   }
 });
 
