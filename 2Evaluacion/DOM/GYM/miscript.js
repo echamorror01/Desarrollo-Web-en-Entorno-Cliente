@@ -68,6 +68,7 @@ function dibujar(ejercicio) {
   const clon = template.content.cloneNode(true);
   const imagen = clon.querySelector(".img-fluid"); //cuidado con el nombre
   imagen.src = ejercicio.imagenes; //cuidado con la imagen que es src
+<<<<<<< HEAD
   imagen.alt = ejercicio.ejercicio;
   return clon;
 }
@@ -89,5 +90,8 @@ function obtenerfila(nombre, series, repeticiones, peso, imagen) {
   clon.querySelector(".repeticiones").textContent = repeticiones;
   clon.querySelector(".peso").textContent = peso;
   clon.querySelector(".imgEjercicios").src = imagen;
+=======
+  
+>>>>>>> 7456881 (guardo cambios locales)
   return clon;
 }
