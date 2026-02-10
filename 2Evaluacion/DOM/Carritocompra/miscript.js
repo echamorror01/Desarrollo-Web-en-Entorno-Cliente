@@ -99,6 +99,7 @@ function dibujar(producto) {
 }
 
 function añadircarrito(producto) {
+  //Buscamos si ese producto existe en el carrito
   //Lo primero que tenemos que hacer es si en mi carrito existe el producto
   const existe = carrito.find(function (carro) {
     return carro.id == producto.id;
@@ -120,7 +121,8 @@ function añadircarrito(producto) {
 }
 
 function actualizarCarrito() {
-  // actualizamos el carrito visualmente
+  // actualizamos el carrito visualemente
+
   cartItems.textContent = ""; //tenemos que vaciar primero el carrito
 
   carrito.forEach(function (elementos, indice) {

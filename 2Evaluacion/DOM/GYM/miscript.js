@@ -26,6 +26,16 @@ let listalimpia = arrayDatos.map((item) => {
   };
 });
 
+/*template	=>Plantilla de cada ejercicio
+grid=>	Contenedor de ejercicios
+tablasdias=>	Donde se pintan los días
+div	=>Panel de añadir ejercicio
+span=>	Nombre del ejercicio seleccionado
+btnañadir=>	Botón añadir
+series, repeticiones, peso	=>Inputs
+dias=>	Selector de día
+templatetabla	=>Plantilla del día
+templatefilaejercicio=>	Plantilla de fila */
 const template = document.querySelector("#templateEjercicio");
 const grid = document.querySelector(".ejercicios");
 const tablasdias = document.querySelector("#listadoEjercicios");
@@ -46,19 +56,21 @@ listalimpia.forEach(function (ejer, indice) {
 
 //Listener
 grid.addEventListener("click", (e) => {
+  //Seleccionamos un ejercicio
   if (e.target.classList.contains("img-fluid")) {
-    span.textContent = e.target.alt;
+    span.textContent = e.target.alt; //mostramos el nombre del ejercicio
     //seleccionamos todos los elementos dentro de grid que tienen la clase ejercicio
     grid.querySelectorAll(".ejercicio").forEach(function (elemento, indice) {
       elemento.classList.remove("bordeColor");
     });
     e.target.parentElement.classList.add("bordeColor"); //se lo agregamos al padre
     e.target.parentElement.classList.remove("bg-body-secondary");
-    imagenSeleccionada = e.target.src;
+    imagenSeleccionada = e.target.src; //marcamos solo la seleccionada
   }
 });
 
 btnañadir.addEventListener("click", () => {
+  //Añadir ejercicio
   if (span.textContent == "") {
     alert("Debes seleccionar un ejercicio");
     return;
@@ -69,23 +81,24 @@ btnañadir.addEventListener("click", () => {
   }
   let nombre = span.textContent;
   let clon = obtenerfila(
+    //Creamos la fila
     nombre,
     series.value,
     repeticiones.value,
     peso.value,
     imagenSeleccionada,
   );
-
+  //Añadir el ejercicio al día correcto
   const numfilas = document.querySelector("[data-dia=" + dias.value + "]");
   if (numfilas == null) {
-    const clon2 = obtenertablaejercicio(dias.value); //cabecera
-    clon2.appendChild(clon);
-    tablasdias.appendChild(clon2);
+    //Si no existe el dia
+    const clon2 = obtenertablaejercicio(dias.value); //cabecera del dia
+    clon2.appendChild(clon); //Fila
+    tablasdias.appendChild(clon2); //Lo añadimos al contenedor principal
   } else {
-    numfilas.appendChild(clon);
+    //Si existe
+    numfilas.appendChild(clon); //Añadimos solo una fila
   }
-
-  //tablasdias.appendChild(clon);
 });
 
 function dibujar(ejercicio) {
@@ -97,17 +110,24 @@ function dibujar(ejercicio) {
 }
 
 function obtenerfila(nombre, series, repeticiones, peso, imagen) {
+  // Creamos la fila
   const clon = templatefilaejercicio.content.cloneNode(true);
   clon.querySelector(".nombreEj").textContent = nombre;
   clon.querySelector(".series").textContent = series;
   clon.querySelector(".repeticiones").textContent = repeticiones;
   clon.querySelector(".peso").textContent = peso;
   clon.querySelector(".imgEjercicios").src = imagen;
-
+  const eliminar = clon.querySelector(".btnEliminar");
+  eliminar.addEventListener("click", (e) => {
+    const fila = e.target.parentElement; // el padre es la fila
+    fila.remove();
+    // falta eliminar cabecera y dia
+  });
   return clon;
 }
 
 function obtenertablaejercicio(dia) {
+  //Creamos una tabla para un dia
   //devolvemos el div de la fila con el dia
   const clon = templatetabla.content.cloneNode(true);
   const h2 = clon.querySelector("h2");
