@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pizza JS Practice</title>
+    <link rel="stylesheet" href="pizzas.css" />
+  </head>
+  <body>
+    <h1>🍕 Pizza Maker Pro</h1>
+
+    <section id="seleccion-bases">
+      <h2>1. Elige tu base:</h2>
+      <div id="contenedor-bases"></div>
+    </section>
+
+    <section id="seleccion-extras">
+      <h2>2. Añade un extra:</h2>
+      <div id="contenedor-extras">
+        <button class="extra" data-precio="2">Champiñones (+2€)</button>
+        <button class="extra" data-precio="3">Bacon (+3€)</button>
+        <button class="extra" data-precio="4">Huevo (+4€)</button>
+      </div>
+      <p>Extra seleccionado: <span id="extra-elegido">Ninguno</span></p>
+    </section>
+
+    <section id="formulario">
+      <input type="text" id="direccion" placeholder="Dirección de entrega" />
+      <button id="btn-pedir">Confirmar Pedido</button>
+    </section>
+
+    <hr />
+
+    <section id="lista-pedidos">
+      <h2>Comandas actuales:</h2>
+      <div id="contenedor-comandas"></div>
+    </section>
+
+    <template id="tmpl-comanda">
+      <div class="card-pedido">
+        <img class="img-pedido" src="" width="50" />
+        <p>Enviar a: <span class="span-dir"></span></p>
+        <p>Extra: <span class="span-extra"></span></p>
+        <button class="btn-borrar">❌ Cancelar</button>
+        <button class="btn-editar">🏠 Cambiar Dirección</button>
+      </div>
+    </template>
+
+    <script src="pizzas.js"></script>
+  </body>
+</html>

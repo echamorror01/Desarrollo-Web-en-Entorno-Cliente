@@ -1,0 +1,43 @@
+<!-- 1. Preparación del Estado (variables globales).
+    - Definir el Array: Crea el array vacío donde guardarás los objetos de los productos.
+    - Contador de ID: Crea una variable numérica para asignar IDs únicos y autoincrementales.
+    - Estado del Filtro: Crea una variable para saber qué filtro está seleccionado (por defecto "Todos").
+    - Capturar Elementos: Usa querySelector para guardar en constantes el input, el botón de añadir, el contenedor de filtros y la lista <ul>. */
+
+
+/* 2. Función "Añadir Producto".
+    - Validar: Comprueba si el input está vacío. Si lo está, lanza un alert y usa return para parar la función.
+    - Crear el Objeto: Crea un objeto con las propiedades: id, nombre, cantidad y comprado (boolean).
+    - Guardar y Limpiar: Haz el .push() al array, limpia el valor de los inputs y llama a la función principal de dibujado. */
+
+
+
+/* 3. Función "Dibujar Lista" (La parte de createElement)
+    - Limpiar el Contenedor: Lo primero es hacer listaUl.innerHTML = "" para no duplicar lo que ya había.
+    - Filtrar: Crea una variable nueva que contenga el array filtrado según el valor de filtroActual.
+    - Bucle (forEach): Recorre el array filtrado y por cada producto:
+        - Crear: Usa document.createElement() para cada etiqueta necesaria (li, span, button).
+        - Configurar:
+            Añade clases con .classList.add().
+            Asigna el texto con .textContent.
+            Si el producto está comprado, añade la clase de estilo "completada" al li o al span.
+        - Eventos: Define el .onclick de los botones (completar y eliminar) antes de insertarlos.
+        - Ensamblar (Jerarquía): Usa appendChild() para meter los botones y el texto dentro del li, y finalmente el li dentro del ul. */
+
+
+/* 4. Lógica de los Botones (Acciones)
+    - Completar: Busca el producto por ID o recíbelo directamente por el bucle, cambia el valor de comprado (de true a false o viceversa) y vuelve a dibujar.
+    - Eliminar: Filtra el array original para quitar el producto con ese ID y vuelve a dibujar. */
+
+
+/* 5. Función "Dibujar Filtros"
+    - Limpiar: Vacía el contenedor de filtros con innerHTML = "".
+    - Crear Botones: Recorre un array con los nombres de tus filtros (["Todos", "Pendientes", "Comprados"]).
+    - Dinamismo: Por cada nombre, crea un button, ponle el texto y, si coincide con el filtroActual, añádele una clase CSS de "activo".
+    - Evento: Al hacer clic, actualiza la variable filtroActual y vuelve a dibujar todo.
+
+
+    
+     "Al añadir un producto, se le asignará automáticamente una fecha de consumo preferente de aquí a 2 días. En la lista, 
+     se mostrará dicha fecha formateada. Si el producto no ha sido 'comprado' y la fecha actual es mayor a su fecha de consumo, 
+     el nombre del producto aparecerá en rojo."  */-->

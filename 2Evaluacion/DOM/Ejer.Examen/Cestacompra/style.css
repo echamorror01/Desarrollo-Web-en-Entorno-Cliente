@@ -1,0 +1,76 @@
+body {
+  font-family: sans-serif;
+  max-width: 500px;
+  margin: 40px auto;
+  background: #f4f4f4;
+}
+
+.form-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Estilos para los filtros creados con createElement */
+.filtros-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.btn-filtro {
+  padding: 5px 15px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  background: #ddd;
+}
+
+.btn-filtro.activo {
+  background: #2196f3;
+  color: white;
+}
+
+/* Estilos para los items de la lista */
+.item-lista {
+  background: white;
+  padding: 10px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.texto-producto.comprado {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.acciones button {
+  margin-left: 5px;
+  cursor: pointer;
+}
+/* Cuando el producto está comprado (tachado) */
+.completada span {
+  text-decoration: line-through;
+  color: gray;
+}
+
+/* Cuando el producto ha pasado su fecha y no está comprado */
+.caducado {
+  color: red;
+  font-weight: bold;
+}
+
+/* Estilo para el botón activo de los filtros */
+.activo {
+  background-color: #4caf50;
+  color: white;
+}

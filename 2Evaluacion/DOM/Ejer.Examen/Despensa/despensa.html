@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mi Despensa Inteligente</title>
+    <script defer src="despensa.js"></script>
+    <style>
+      /* Un poco de estilo base */
+      .producto {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 5px;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+      }
+      .agotado {
+        color: red;
+        font-weight: bold;
+      }
+      .filtro {
+        cursor: pointer;
+        padding: 5px 10px;
+        border: 1px solid black;
+        display: inline-block;
+        margin-right: 5px;
+      }
+      .activo {
+        background-color: black;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Gestor de Despensa</h1>
+
+    <div class="formulario">
+      <input type="text" id="nombreProd" placeholder="Nombre del producto" />
+      <select id="catProd">
+        <option value="Lácteos">Lácteos</option>
+        <option value="Carne">Carne</option>
+        <option value="Fruta">Fruta</option>
+        <option value="Bebida">Bebida</option>
+      </select>
+      <button id="btnAnadir">Añadir a la lista</button>
+    </div>
+
+    <div id="filtrosContenedor" style="margin: 20px 0"></div>
+
+    <ul id="listaProductos"></ul>
+
+    <template id="tempProducto">
+      <li class="producto">
+        <div>
+          <span class="p-nombre"></span>
+          (<span class="p-cat"></span>) - Cantidad:
+          <strong class="p-cant"></strong>
+        </div>
+        <div>
+          <button class="btn-mas">+</button>
+          <button class="btn-menos">-</button>
+          <button class="btn-borrar">Eliminar</button>
+        </div>
+      </li>
+    </template>
+  </body>
+</html>
