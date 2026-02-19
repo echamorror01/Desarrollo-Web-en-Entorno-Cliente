@@ -281,7 +281,7 @@ function borrarReserva(idBorrar, numeroButaca) {
 
   //Filtramos el array
   reservas = reservas.filter(function (res) {
-    return res.id !== idBorrar;
+    return res.id !== idBorrar; // si el id es diferente la reserva se queda si es igual se borra
   });
 
   //3. Actualizar todo
