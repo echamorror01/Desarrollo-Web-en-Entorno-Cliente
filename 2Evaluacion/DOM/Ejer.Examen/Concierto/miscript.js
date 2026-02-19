@@ -1,6 +1,5 @@
 //Variables
 const div = document.querySelector(".conciertos");
-
 let reservas = [];
 
 /* Este apartado por si me da un array mas grande y tengo que crear mas cosas
