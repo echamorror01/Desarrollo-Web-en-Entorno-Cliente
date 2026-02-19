@@ -60,7 +60,7 @@ function eliminarTarea(id) {
   const tareasRestantes = tareas.filter(function (tarea) {
     //filter: crea un nuevo array con todos los elementos que cumplan la condición (borras,listar)
     if (tarea.id != id) {
-      return true; // se queda
+      return true; // se queda  //Para "borrar" la tarea con ID 5, le decimos al programa: "Crea una lista nueva donde solo entren las tareas que tengan un ID que NO sea 5".
     } else {
       return false; //se borra
     }
