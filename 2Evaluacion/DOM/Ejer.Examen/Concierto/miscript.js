@@ -100,7 +100,7 @@ div.addEventListener("click", (e) => {
     imagenes.forEach(function (i) {
       i.style.border = "none";
     });
-    e.target.style.border = "4px solid blue"; //se lo agregamos al padre
+    e.target.style.border = "4px solid blue"; //se lo agregamos a la imagen
     imagenseleccionada = e.target.src; // marcamos la seleccionada
   }
 });
@@ -174,7 +174,20 @@ btnReservar.addEventListener("click", function () {
     );
     return; //Paramos si falta algo por rellenar
   }
+  /* // 1. Capturamos el momento de la reserva
+    const fechaReserva = new Date();
+    
+    // 2. Calculamos la caducidad (Sumar 130)
+    const fechaCaducidad = new Date(); // Creamos otra copia para no modificar la de hoy
+    fechaCaducidad.setDate(fechaCaducidad.getDate() + 130);
 
+    // 3. Creamos el objeto para el array
+    const nuevaReserva = {
+        id: Date.now(),
+        nombre: inputNombre.value,
+        fechaCompra: fechaReserva.toLocaleDateString(),
+        fechaLimite: fechaCaducidad.toLocaleDateString() // Esta es la que tiene +130 días
+    };*/
   //2. CREAR OBJETO: Guardamos los datos de la reserva
   const nuevaReserva = {
     id: Date.now(),
@@ -267,7 +280,7 @@ function borrarReserva(idBorrar, numeroButaca) {
 
   //Filtramos el array
   reservas = reservas.filter(function (res) {
-    return res.id !== idBorrar;
+    return res.id !== idBorrar; // si el id es diferente la reserva se queda si es igual se borra
   });
 
   //3. Actualizar todo
